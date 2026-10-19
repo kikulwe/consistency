@@ -13,6 +13,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
+<script>try{var t=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}).theme||'dark';if(t!=='system')document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -145,6 +146,9 @@ form.add input{flex:1;min-width:0;padding:11px 12px;border-radius:12px;border:1p
 
 .setrow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
 .setrow:first-of-type{border-top:0}
+.setrow{flex-wrap:wrap}
+.setrow>div:first-child{flex:1 1 220px;min-width:0}
+.btn{white-space:nowrap}
 .setrow p{margin:0}
 .bk{display:flex;gap:8px;flex-wrap:wrap}
 .imp{display:inline-flex;align-items:center;cursor:pointer}
@@ -266,6 +270,10 @@ form.add input{flex:1;min-width:0;padding:11px 12px;border-radius:12px;border:1p
       <section class="panel">
         <h2>Settings &amp; backup</h2>
         <div class="setrow">
+          <div><p><b>Appearance</b></p><p class="note">System follows your iPhone setting.</p></div>
+          <div class="seg" id="themeSeg" role="group" aria-label="Appearance" style="min-width:210px"></div>
+        </div>
+        <div class="setrow">
           <div><p><b>Badge on app icon</b></p><p class="note">Shows how many habits are left today. iPhone asks for notification permission once.</p></div>
           <label class="switch"><input type="checkbox" id="badgeToggle" aria-label="Badge on app icon"><span></span></label>
         </div>
@@ -276,6 +284,10 @@ form.add input{flex:1;min-width:0;padding:11px 12px;border-radius:12px;border:1p
             <label class="btn imp" for="importFile">Restore</label>
             <input type="file" id="importFile" accept="application/json,.json" hidden>
           </div>
+        </div>
+        <div class="setrow">
+          <div><p><b>App version</b></p><p class="note" id="verNote">Updates download automatically when you're online.</p></div>
+          <button class="btn" type="button" id="updBtn">Check for updates</button>
         </div>
         <div class="setrow" id="archRow" hidden>
           <div><p><b>Archived habits</b></p><p class="note">Paused habits keep their history.</p></div>
@@ -599,12 +611,30 @@ $('importFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';i
     S.habits=d.habits;S.days=d.days;S.settings={...(d.settings||{}),...{badge:S.settings.badge}};save();render();toast('Restored '+Object.keys(d.habits).length+' habits and '+Object.keys(d.days).length+' days.')}
   catch(err){toast('That file isn’t a Consistency backup.')}};
 
+/* ---------- theme ---------- */
+const THEMES=[['dark','Dark'],['light','Light'],['system','System']];
+function applyTheme(){const t=S.settings.theme||'dark';const r=document.documentElement;if(t==='system')r.removeAttribute('data-theme');else r.setAttribute('data-theme',t);
+  const dark=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.setAttribute('content',dark?'#0E1311':'#F2F4F0');m.removeAttribute('media')});
+  $('themeSeg').replaceChildren(...THEMES.map(([v,l])=>el('button',{type:'button','aria-pressed':String(t===v),onclick:()=>{S.settings={...S.settings,theme:v};save();applyTheme();renderLine();renderWk()}},l)))}
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if((S.settings.theme||'dark')==='system')applyTheme()});
+
+/* ---------- updates ---------- */
+const VERSION='2.1';
+$('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent='Checking…';
+  try{const reg=await navigator.serviceWorker.getRegistration();if(reg)await reg.update();
+    const r=await fetch('./?v='+Date.now(),{cache:'no-store'});const html=await r.text();const m=html.match(/const VERSION='([^']+)'/);
+    if(m&&m[1]!==VERSION){toast('Updating to version '+m[1]+'…');setTimeout(()=>location.reload(),800)}
+    else{toast('You’re on the latest version.');b.disabled=false;b.textContent='Check for updates'}}
+  catch(e){toast('Couldn’t check. Connect to the internet and try again.');b.disabled=false;b.textContent='Check for updates'}};
+
 /* ---------- boot ---------- */
 try{const d=JSON.parse(localStorage.getItem(LS)||'null');if(d){S.habits=d.habits||{};S.days=d.days||{};S.settings=d.settings||{};
   const lb=localStorage.getItem(LS+'-lastbackup');if(lb&&!S.settings.lastBackup)S.settings.lastBackup=lb}}catch(e){}
+applyTheme();$('verNote').textContent='Version '+VERSION+'. Updates download automatically when you’re online.';
 render();
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{})}
 })();
 </script>
 </body>

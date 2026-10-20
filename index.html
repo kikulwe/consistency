@@ -8,34 +8,34 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Consistency">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#F2F4F0" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0E1311" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F1F3F8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0A0F1E" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
 <script>try{var t=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}).theme||'dark';if(t!=='system')document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
 <style>
 /* Layout: logbook — today's checklist pinned left, the record (streaks, trend, heatmap) right; stacks on phones */
 :root{
-  --bg:#F2F4F0; --surface:#FFFFFF; --ink:#16201B; --muted:#5D6A62; --line:#DCE2DB;
-  --accent:#2E6B4E; --accent-ink:#FFFFFF; --accent-soft:#E1EEE6; --danger:#B23A3A; --skip:#8C8F6E;
-  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
-  --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --bg:#F1F3F8; --surface:#FFFFFF; --ink:#131A2B; --muted:#5A6479; --line:#D8DEEA;
+  --accent:#1E3A8A; --accent-ink:#FFFFFF; --accent-soft:#E2E8F6; --danger:#B23A3A; --skip:#7E879B;
+  --display:"Montserrat",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --body:"Montserrat",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Montserrat",ui-sans-serif,system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0E1311; --surface:#161D19; --ink:#E6ECE8; --muted:#92A098; --line:#28322C;
-  --accent:#6BC495; --accent-ink:#0C1610; --accent-soft:#1B3127; --danger:#E07272; --skip:#B3B58E; color-scheme:dark}}
+  --bg:#0A0F1E; --surface:#121a2e; --ink:#E5EAF5; --muted:#8F9AB3; --line:#24304A;
+  --accent:#5B8DEF; --accent-ink:#081127; --accent-soft:#16244A; --danger:#E07272; --skip:#8F9AB3; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#0E1311; --surface:#161D19; --ink:#E6ECE8; --muted:#92A098; --line:#28322C;
-  --accent:#6BC495; --accent-ink:#0C1610; --accent-soft:#1B3127; --danger:#E07272; --skip:#B3B58E; color-scheme:dark}
+  --bg:#0A0F1E; --surface:#121a2e; --ink:#E5EAF5; --muted:#8F9AB3; --line:#24304A;
+  --accent:#5B8DEF; --accent-ink:#081127; --accent-soft:#16244A; --danger:#E07272; --skip:#8F9AB3; color-scheme:dark}
 
 html{-webkit-text-size-adjust:100%}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;margin:0;-webkit-tap-highlight-color:transparent;
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-variant-numeric:tabular-nums;font-size:15px;line-height:1.45;margin:0;-webkit-tap-highlight-color:transparent;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
   padding-top:calc(20px + env(safe-area-inset-top,0px));padding-bottom:calc(40px + env(safe-area-inset-bottom,0px))}
 body.locked{overflow:hidden}
@@ -46,7 +46,7 @@ button{cursor:pointer}
 
 .top{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .eyebrow{margin:0;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-h1{margin:4px 0 0;font-family:var(--display);font-weight:800;font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+h1{margin:4px 0 0;font-family:var(--display);font-weight:700;font-size:clamp(28px,5vw,40px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
 .ring{display:flex;align-items:center;gap:12px}
 .ring svg{width:64px;height:64px}
 .ring b{font-family:var(--display);font-size:26px;display:block;line-height:1;font-variant-numeric:tabular-nums}
@@ -304,7 +304,7 @@ form.add input{flex:1;min-width:0;padding:11px 12px;border-radius:12px;border:1p
 
 <script>
 (function(){
-const COLORS=['#3E8E6A','#3B6EA8','#C27A2C','#8A5BB0','#C0474F','#5F7F1F','#2B8C93','#A65A86'];
+const COLORS=['#2F5BD3','#3B82C4','#C27A2C','#8A5BB0','#C0474F','#2B8C93','#5F7F1F','#A65A86'];
 const SUGGEST=['Study 1 hour','Exercise','Trading journal','Read 10 pages','Drink 8 glasses of water','Sleep by 11pm'];
 const TOD=[['morning','Morning'],['afternoon','Afternoon'],['evening','Evening'],['anytime','Anytime']];
 const WD=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
@@ -615,12 +615,12 @@ $('importFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';i
 const THEMES=[['dark','Dark'],['light','Light'],['system','System']];
 function applyTheme(){const t=S.settings.theme||'dark';const r=document.documentElement;if(t==='system')r.removeAttribute('data-theme');else r.setAttribute('data-theme',t);
   const dark=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);
-  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.setAttribute('content',dark?'#0E1311':'#F2F4F0');m.removeAttribute('media')});
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.setAttribute('content',dark?'#0A0F1E':'#F1F3F8');m.removeAttribute('media')});
   $('themeSeg').replaceChildren(...THEMES.map(([v,l])=>el('button',{type:'button','aria-pressed':String(t===v),onclick:()=>{S.settings={...S.settings,theme:v};save();applyTheme();renderLine();renderWk()}},l)))}
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if((S.settings.theme||'dark')==='system')applyTheme()});
 
 /* ---------- updates ---------- */
-const VERSION='2.1';
+const VERSION='2.2';
 $('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent='Checking…';
   try{const reg=await navigator.serviceWorker.getRegistration();if(reg)await reg.update();
     const r=await fetch('./?v='+Date.now(),{cache:'no-store'});const html=await r.text();const m=html.match(/const VERSION='([^']+)'/);
@@ -632,6 +632,7 @@ $('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent=
 try{const d=JSON.parse(localStorage.getItem(LS)||'null');if(d){S.habits=d.habits||{};S.days=d.days||{};S.settings=d.settings||{};
   const lb=localStorage.getItem(LS+'-lastbackup');if(lb&&!S.settings.lastBackup)S.settings.lastBackup=lb}}catch(e){}
 applyTheme();$('verNote').textContent='Version '+VERSION+'. Updates download automatically when you’re online.';
+{let ch=false;const o={...S.habits};for(const id in o){if(o[id].color==='#3E8E6A'||o[id].color==='#1E3A8A'){o[id]={...o[id],color:'#2F5BD3'};ch=true}}if(ch){S.habits=o;save()}}
 render();
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 if('serviceWorker' in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{})}

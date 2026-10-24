@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
-<script>try{var t=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}).theme||'dark';if(t!=='system')document.documentElement.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<script>try{var st=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}),t=st.theme||'dark',r=document.documentElement;if(st.look==='black'){r.setAttribute('data-look','black');r.setAttribute('data-theme','dark')}else if(t!=='system')r.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
 <style>
@@ -328,7 +328,7 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
 .mleg b{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
 .accts{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 4px}
 .accts::-webkit-scrollbar{display:none}
-.acct{flex:none;width:132px;padding:12px;border-radius:22px;border:0;text-align:left;color:inherit}
+.acct{flex:none;width:140px;padding:12px;border-radius:22px;border:0;text-align:left;color:inherit}
 .acct .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;margin-bottom:8px}
 .acct b{display:block;font-size:15.5px;font-weight:800}
 .acct span{font-size:11px;color:var(--muted);font-weight:600}
@@ -403,6 +403,58 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
 .noteIn{width:100%;margin-top:8px;padding:11px 14px;border:0;border-radius:16px;background:var(--field)}
 .noteIn::placeholder{color:var(--muted)}
 
+/* ---------- consistency pass: one grid, one rhythm ---------- */
+.view{gap:14px}
+.glass{border-radius:24px}
+.app,.blist,.list,.slist,ul.habits{border-radius:24px}
+.acct{border-radius:20px}
+.sec-t,.group h3,.day{margin:8px 8px 0;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.group{display:flex;flex-direction:column;gap:8px}
+.sec-row{margin:8px 8px 0}
+/* rows: same padding, title and subtitle sizes everywhere */
+.li,.env,.gl,.setrow{padding:14px 16px}
+.tick{padding:14px 6px 14px 16px}
+.li .tx b,.env .r1 b,.gl b,.name,.row .nm,.setrow b,.rcard b,.alert .t{font-size:14.5px;font-weight:600}
+.li .tx span,.sub,.env .r2,.row .meta,.setrow .note,.rcard span span{font-size:12px}
+.li .v,.env .r1 em,.streak,.gl span,.row .num{font-size:13px;font-weight:700}
+.gl{min-height:60px}
+.gl b{line-height:1.3}
+/* cards: same inner padding */
+.card,.hero,.safe,.notecard,.alert,.rcard,.assign,.goal,.donut,.tile{padding:16px}
+/* home tiles: equal columns, same structure top to bottom */
+.apps{grid-template-columns:repeat(2,minmax(0,1fr))}
+.app{width:100%;justify-self:stretch;min-height:188px;padding:16px;justify-content:space-between;align-items:stretch}
+.app>span:last-child{display:block;min-width:0}
+.app b{margin-top:0}
+.app .big{margin-top:2px}
+.app .s{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.app.soon{min-height:0;justify-content:flex-start;align-items:center}
+.app.soon>span:last-child{flex:1}
+/* scene: ridges run to the bottom so there is no cut line */
+.scene::after{bottom:0;height:52%}
+.blob{opacity:.32}
+.b1{top:-4vh}
+.hd .hbtns{display:flex;gap:8px}
+
+/* ---------- Black style ---------- */
+:root[data-look="black"]{
+  --g-fill:#0E0F12; --g-strong:rgba(255,255,255,.07); --g-hi:rgba(255,255,255,.05); --g-shadow:transparent;
+  --edge-a:rgba(255,255,255,.09); --edge-b:rgba(255,255,255,.09); --edge-c:rgba(255,255,255,.09);
+  --fg:#FFFFFF; --muted:rgba(255,255,255,.55); --track:rgba(255,255,255,.1); --divider:rgba(255,255,255,.07);
+  --surface:#16181D; --field:#17191E; --sheet:rgba(18,19,23,.96); --scrim:rgba(0,0,0,.6); color-scheme:dark}
+:root[data-look="black"],:root[data-look="black"] body{background:#000}
+:root[data-look="black"] .scene{display:none}
+:root[data-look="black"] .glass,:root[data-look="black"] .chip,:root[data-look="black"] .sheet,:root[data-look="black"] .tabbar.glass{-webkit-backdrop-filter:none;backdrop-filter:none}
+:root[data-look="black"] .tabbar.glass{background:rgba(20,21,25,.92);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+:root[data-look="black"] .app .ico{box-shadow:none}
+
+/* swipe back */
+.edgehint{position:fixed;left:calc(6px + env(safe-area-inset-left,0px));top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;z-index:40;display:grid;place-items:center;font-size:22px;font-weight:700;color:var(--fg);background:var(--sheet);box-shadow:0 6px 18px rgba(0,0,0,.3);opacity:0;pointer-events:none;transform:translateX(-50px)}
+main.app.swiping{transition:none}
+main.app{transition:transform .25s ease}
+.sheet{transition:transform .25s ease}
+.sheet.dragging{transition:none}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -451,7 +503,8 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
   <section class="view" id="v-settings" aria-label="Settings" hidden>
     <div class="hd"><div><p class="eyebrow">Consistency</p><h1>Settings</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
     <div class="glass slist">
-      <div class="setrow"><div><p><b>Appearance</b></p><p class="note">System follows your iPhone.</p></div><div class="seg" id="themeSeg" role="group" aria-label="Appearance" style="min-width:220px"></div></div>
+      <div class="setrow"><div><p><b>Style</b></p><p class="note">Glass, or pure black for OLED screens.</p></div><div class="seg" id="styleSeg" role="group" aria-label="Style" style="min-width:220px"></div></div>
+      <div class="setrow"><div><p><b>Appearance</b></p><p class="note" id="themeNote">System follows your iPhone.</p></div><div class="seg" id="themeSeg" role="group" aria-label="Appearance" style="min-width:220px"></div></div>
       <div class="setrow"><div><p><b>Streak warnings</b></p><p class="note">Highlights open habits on a 3+ day streak.</p></div>
         <select class="pill" id="warnSel" aria-label="Streak warnings"><option value="off">Off</option><option value="17">From 5 pm</option><option value="18">From 6 pm</option><option value="19">From 7 pm</option><option value="20">From 8 pm</option><option value="21">From 9 pm</option></select></div>
       <div class="setrow"><div><p><b>Weekly review</b></p><p class="note">A recap card every Sunday.</p></div><label class="switch"><input type="checkbox" id="reviewToggle" aria-label="Weekly review"><span></span></label></div>
@@ -468,7 +521,7 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
   </section>
 
   <section class="view" id="v-home" aria-label="Home" hidden>
-    <div class="hd"><div><p class="eyebrow" id="homeDate"></p><h1 id="homeHi">Hello</h1></div></div>
+    <div class="hd"><div><p class="eyebrow" id="homeDate"></p><h1 id="homeHi">Hello</h1></div><button class="homebtn glass" type="button" id="lookBtn" aria-label="Appearance"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17" /><path d="M12 3.5a8.5 8.5 0 0 1 0 17z" fill="currentColor"/></svg></button></div>
     <div class="apps">
       <button class="app glass" type="button" id="openC">
         <span class="ico" style="background:linear-gradient(180deg,#6E8FF0,#2F5BD3)"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg></span>
@@ -529,6 +582,7 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
   <button type="button" role="tab" aria-selected="false" data-bt="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Activity</button>
   <button type="button" role="tab" aria-selected="false" data-bt="goals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Goals</button>
 </nav>
+<div class="edgehint" id="edgeHint" aria-hidden="true">‹</div>
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden></div>
 <div class="toast glass" id="toast" hidden><span id="toastMsg"></span><button type="button" id="toastBtn" hidden>Undo</button></div>
@@ -902,14 +956,25 @@ $('importFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';i
 
 /* ---------- theme ---------- */
 const THEMES=[['dark','Dark'],['light','Light'],['system','System']];
-function applyTheme(){const t=S.settings.theme||'dark';const r=document.documentElement;if(t==='system')r.removeAttribute('data-theme');else r.setAttribute('data-theme',t);
-  const dark=t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);
-  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.setAttribute('content',dark?'#050816':'#BFD0F5')});
-  $('themeSeg').replaceChildren(...THEMES.map(([v,l])=>el('button',{type:'button','aria-pressed':String(t===v),onclick:()=>{S.settings={...S.settings,theme:v};save();applyTheme();renderLine();renderWk()}},l)))}
+const STYLES=[['glass','Glass'],['black','Black']];
+function setLook(k,v){S.settings={...S.settings,[k]:v};save();applyTheme();if(S.tab==='stats'&&S.app==='c'){renderLine();renderWk()}}
+function segFor(list,cur,k){return list.map(([v,l])=>el('button',{type:'button','aria-pressed':String(cur===v),onclick:()=>setLook(k,v)},l))}
+function applyTheme(){const t=S.settings.theme||'dark',lk=S.settings.look||'glass';const r=document.documentElement;
+  if(lk==='black'){r.setAttribute('data-look','black');r.setAttribute('data-theme','dark')}else{r.removeAttribute('data-look');if(t==='system')r.removeAttribute('data-theme');else r.setAttribute('data-theme',t)}
+  const dark=lk==='black'||t==='dark'||(t==='system'&&matchMedia('(prefers-color-scheme: dark)').matches);
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.setAttribute('content',lk==='black'?'#000000':dark?'#050816':'#BFD0F5')});
+  $('styleSeg').replaceChildren(...segFor(STYLES,lk,'look'));
+  $('themeSeg').replaceChildren(...segFor(THEMES,t,'theme'));$('themeSeg').style.opacity=lk==='black'?'.45':'';$('themeSeg').style.pointerEvents=lk==='black'?'none':'';
+  $('themeNote').textContent=lk==='black'?'Black style is always dark.':'System follows your iPhone.';
+  const ls=document.getElementById('lookStyle'),lt=document.getElementById('lookTheme');
+  if(ls)ls.replaceChildren(...segFor(STYLES,lk,'look'));if(lt){lt.replaceChildren(...segFor(THEMES,t,'theme'));lt.style.opacity=lk==='black'?'.45':'';lt.style.pointerEvents=lk==='black'?'none':''}}
+function openLook(){openSheet(el('h2',{},'Appearance'),el('p',{class:'note',style:'margin:0'},'Applies to every app.'),
+  fieldDiv('Style',el('div',{class:'seg',id:'lookStyle'})),fieldDiv('Mode',el('div',{class:'seg',id:'lookTheme'})),
+  el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:closeSheet},'Done')));applyTheme()}
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if((S.settings.theme||'dark')==='system')applyTheme()});
 
 /* ---------- updates ---------- */
-const VERSION='4.0';
+const VERSION='4.1';
 $('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent='Checking…';
   try{const reg=await navigator.serviceWorker.getRegistration();if(reg)await reg.update();
     const r=await fetch('./?v='+Date.now(),{cache:'no-store'});const html=await r.text();const m=html.match(/const VERSION='([^']+)'/);
@@ -923,6 +988,7 @@ function hideAll(){document.querySelectorAll('main .view').forEach(v=>v.hidden=t
 function goHome(){S.app='home';hideAll();$('v-home').hidden=false;window.scrollTo(0,0);renderHome()}
 document.querySelectorAll('[data-home]').forEach(b=>b.onclick=goHome);
 $('openC').onclick=()=>tab('today');
+$('lookBtn').onclick=openLook;
 $('openB').onclick=()=>btab('overview');
 
 /* ---------- budget: data ---------- */
@@ -1135,8 +1201,8 @@ function renderHome(){
   const t=today(),h=new Date().getHours();
   $('homeDate').textContent=fmt(t);$('homeHi').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+(S.settings.name?', '+S.settings.name:'');
   const a=list().filter(x=>counts(x,t)),dn=a.filter(x=>isDone(t,x)).length,ps=perfectStreak();
-  $('hC1').textContent=a.length?dn+' of '+a.length:'–';$('hC2').textContent=a.length?'habits done'+(ps>1?' · '+ps+'-day streak':''):'No habits for today';
-  const sf=safeToSpend(),dl=daysLeft();$('hB1').textContent=kf(sf);$('hB2').textContent='safe to spend · '+dl+(dl===1?' day':' days')+' left';
+  $('hC1').textContent=a.length?dn+' of '+a.length:'–';$('hC2').textContent=a.length?(ps>1?'done · '+ps+'-day streak':'habits done'):'none today';
+  const sf=safeToSpend(),dl=daysLeft();$('hB1').textContent=kf(sf);$('hB2').textContent='safe · '+dl+(dl===1?' day':' days')+' left';
   const rows=[];const r=atRisk();
   if(r.length)rows.push(['🔥',r.length===1?'1 streak at risk tonight':r.length+' streaks at risk tonight',r.map(x=>x.name.split(' ')[0]).join(', '),'var(--warn)',()=>tab('today')]);
   else if(a.length)rows.push(['✅',dn===a.length?'All habits done today':(a.length-dn)+' habits left today',ps>1?ps+'-day streak':'','var(--accent)',()=>tab('today')]);
@@ -1146,6 +1212,35 @@ function renderHome(){
   if(!B.tx.length)rows.push(['💸','Log your first spend in Budget','Start','var(--accent)',()=>{btab('overview');openTx()}]);
   $('glance').replaceChildren(...rows.map(([i,b,s,c,fn])=>el('button',{class:'gl',type:'button',onclick:fn},el('i',{},i),el('b',{},b),el('span',{style:'color:'+c},s))));
 }
+
+/* ---------- swipe back ---------- */
+function goBack(){
+  if(!$('sheet').hidden){closeSheet();return true}
+  if(S.app==='b'){if(B.tab!=='overview')btab('overview');else goHome();return true}
+  if(S.app==='c'){if(S.tab!=='today')tab('today');else if(S.sel!==today()){S.sel=today();render()}else goHome();return true}
+  return false}
+(function(){
+  const main=document.querySelector('main.app'),hint=$('edgeHint');let sx=0,sy=0,dx=0,on=false,lock=null;
+  document.addEventListener('touchstart',e=>{if(!$('sheet').hidden&&!e.target.closest('.sheet'))return;const t=e.touches[0];
+    if(t.clientX>28||(S.app==='home'&&$('sheet').hidden)){on=false;return}on=true;lock=null;sx=t.clientX;sy=t.clientY;dx=0},{passive:true});
+  document.addEventListener('touchmove',e=>{if(!on)return;const t=e.touches[0];dx=t.clientX-sx;const dy=t.clientY-sy;
+    if(lock===null&&(Math.abs(dx)>8||Math.abs(dy)>8))lock=Math.abs(dx)>Math.abs(dy)?'x':'y';
+    if(lock!=='x'){return}if(e.cancelable)e.preventDefault();const d=Math.max(0,dx);
+    if($('sheet').hidden){main.classList.add('swiping');main.style.transform='translateX('+Math.min(d*.45,90)+'px)'}
+    hint.style.opacity=Math.min(1,d/90);hint.style.transform='translateX('+(Math.min(d,90)-50)+'px)'},{passive:false});
+  const end=()=>{if(!on)return;on=false;main.classList.remove('swiping');main.style.transform='';hint.style.opacity=0;hint.style.transform='translateX(-50px)';
+    if(lock==='x'&&dx>80)goBack()};
+  document.addEventListener('touchend',end);document.addEventListener('touchcancel',end);
+  // drag a sheet down to close it
+  const sh=$('sheet');let sy2=0,dy2=0,drag=false;
+  sh.addEventListener('touchstart',e=>{if(sh.scrollTop>0||e.target.closest('input,textarea,select,.keys,.chiprow'))return;drag=true;sy2=e.touches[0].clientY;dy2=0},{passive:true});
+  sh.addEventListener('touchmove',e=>{if(!drag)return;dy2=e.touches[0].clientY-sy2;if(dy2<=0){sh.style.transform='';return}if(e.cancelable)e.preventDefault();sh.classList.add('dragging');sh.style.transform='translateY('+dy2+'px)'},{passive:false});
+  const send=()=>{if(!drag)return;drag=false;sh.classList.remove('dragging');sh.style.transform='';if(dy2>110)closeSheet()};
+  sh.addEventListener('touchend',send);sh.addEventListener('touchcancel',send);
+  // Android / browser back button
+  history.replaceState({app:1},'');history.pushState({app:2},'');
+  window.addEventListener('popstate',()=>{if(goBack())history.pushState({app:2},'')});
+})();
 
 /* ---------- boot ---------- */
 try{const d=JSON.parse(localStorage.getItem(LS)||'null');if(d){S.habits=d.habits||{};S.days=d.days||{};S.settings=d.settings||{};S.reviews=d.reviews||{};

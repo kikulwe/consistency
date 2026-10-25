@@ -12,7 +12,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" href="icons/icon-192.png">
-<script>try{var st=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}),t=st.theme||'dark',r=document.documentElement;if(st.look==='black'){r.setAttribute('data-look','black');r.setAttribute('data-theme','dark')}else if(t!=='system')r.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
+<script>try{var st=(JSON.parse(localStorage.getItem('consistency-log-v1')||'{}').settings||{}),t=st.theme||'dark',r=document.documentElement;if(st.lock&&st.lock.on)r.setAttribute('data-locked','');if(st.look==='black'){r.setAttribute('data-look','black');r.setAttribute('data-theme','dark')}else if(t!=='system')r.setAttribute('data-theme',t)}catch(e){document.documentElement.setAttribute('data-theme','dark')}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap">
 <style>
@@ -455,6 +455,27 @@ main.app{transition:transform .25s ease}
 .sheet{transition:transform .25s ease}
 .sheet.dragging{transition:none}
 
+/* lock screen */
+.lock{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px));
+  background:var(--sky3);-webkit-backdrop-filter:blur(40px);backdrop-filter:blur(40px)}
+:root:not([data-locked]) .lock{display:none}
+:root[data-locked] main,:root[data-locked] .tabbar{visibility:hidden}
+.lock .lk{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;background:linear-gradient(180deg,var(--accent-top),var(--accent-solid));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 10px 30px rgba(30,60,160,.4)}
+.lock .lk svg{width:38px;height:38px}
+.lock h2{font-size:22px;font-weight:800;margin:6px 0 0}
+.lock p{margin:0;color:var(--muted);font-size:14px;max-width:30ch}
+.lock .btn{min-width:240px;padding:14px 20px;font-size:15px}
+.lock .linkbtn{font-size:14px;margin-top:4px}
+.pinrow{display:flex;gap:12px;justify-content:center;margin:6px 0}
+.pinrow i{width:14px;height:14px;border-radius:50%;border:2px solid var(--muted)}
+.pinrow i.on{background:var(--fg);border-color:var(--fg)}
+.pinrow.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.pinpad{display:grid;grid-template-columns:repeat(3,72px);gap:12px;justify-content:center}
+.pinpad button{width:72px;height:72px;border-radius:50%;border:0;font-size:26px;font-weight:600;background:var(--g-strong);color:var(--fg);box-shadow:inset 0 1px 0 var(--g-hi)}
+.pinpad button.blank{visibility:hidden}
+
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -508,6 +529,9 @@ main.app{transition:transform .25s ease}
       <div class="setrow"><div><p><b>Streak warnings</b></p><p class="note">Highlights open habits on a 3+ day streak.</p></div>
         <select class="pill" id="warnSel" aria-label="Streak warnings"><option value="off">Off</option><option value="17">From 5 pm</option><option value="18">From 6 pm</option><option value="19">From 7 pm</option><option value="20">From 8 pm</option><option value="21">From 9 pm</option></select></div>
       <div class="setrow"><div><p><b>Weekly review</b></p><p class="note">A recap card every Sunday.</p></div><label class="switch"><input type="checkbox" id="reviewToggle" aria-label="Weekly review"><span></span></label></div>
+      <div class="setrow"><div><p><b>Face ID lock</b></p><p class="note" id="lockNote">Ask for Face ID when the app opens.</p></div><label class="switch"><input type="checkbox" id="lockToggle" aria-label="Face ID lock"><span></span></label></div>
+      <div class="setrow" id="lockAfterRow" hidden><div><p><b>Lock again after</b></p><p class="note">Time away from the app before it asks again.</p></div>
+        <select class="pill" id="lockAfter" aria-label="Lock again after"><option value="0">Right away</option><option value="60">1 minute</option><option value="300">5 minutes</option><option value="900">15 minutes</option></select></div>
       <div class="setrow"><div><p><b>Badge on app icon</b></p><p class="note">Habits left today. Asks for notification permission once.</p></div><label class="switch"><input type="checkbox" id="badgeToggle" aria-label="Badge on app icon"><span></span></label></div>
     </div>
     <p class="sec-t">Data</p>
@@ -582,6 +606,13 @@ main.app{transition:transform .25s ease}
   <button type="button" role="tab" aria-selected="false" data-bt="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Activity</button>
   <button type="button" role="tab" aria-selected="false" data-bt="goals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Goals</button>
 </nav>
+<div class="lock" id="lockScreen" role="dialog" aria-modal="true" aria-label="Locked">
+  <div class="lk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+  <h2>Locked</h2>
+  <p id="lockMsg">Unlock with Face ID to open your apps.</p>
+  <div id="lockMain"><button class="btn pri" type="button" id="unlockBtn">Unlock with Face ID</button><br><button class="linkbtn" type="button" id="pinBtn">Use passcode</button></div>
+  <div id="lockPin" hidden><div class="pinrow" id="pinDots"></div><div class="pinpad" id="pinPad"></div><button class="linkbtn" type="button" id="faceBtn" style="margin-top:14px">Use Face ID</button></div>
+</div>
 <div class="edgehint" id="edgeHint" aria-hidden="true">‹</div>
 <div class="scrim" id="scrim" hidden></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" hidden></div>
@@ -974,7 +1005,7 @@ function openLook(){openSheet(el('h2',{},'Appearance'),el('p',{class:'note',styl
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if((S.settings.theme||'dark')==='system')applyTheme()});
 
 /* ---------- updates ---------- */
-const VERSION='4.1';
+const VERSION='4.2';
 $('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent='Checking…';
   try{const reg=await navigator.serviceWorker.getRegistration();if(reg)await reg.update();
     const r=await fetch('./?v='+Date.now(),{cache:'no-store'});const html=await r.text();const m=html.match(/const VERSION='([^']+)'/);
@@ -1242,12 +1273,62 @@ function goBack(){
   window.addEventListener('popstate',()=>{if(goBack())history.pushState({app:2},'')});
 })();
 
+/* ---------- Face ID lock ---------- */
+const b64=buf=>btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+const unb64=s=>{s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';return Uint8Array.from(atob(s),c=>c.charCodeAt(0))};
+const rnd=n=>crypto.getRandomValues(new Uint8Array(n));
+async function pinHash(pin,salt){const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+':'+pin));return b64(d)}
+const lockCfg=()=>S.settings.lock||{};
+function setLocked(v){const r=document.documentElement;if(v)r.setAttribute('data-locked','');else r.removeAttribute('data-locked')}
+let unlocking=false,pinBuf='',pinFails=0,pinWait=0;
+async function faceUnlock(){const L=lockCfg();if(!L.on||unlocking)return;if(!L.cred){showPin();return}unlocking=true;
+  try{const c=await navigator.credentials.get({publicKey:{challenge:rnd(32),allowCredentials:[{type:'public-key',id:unb64(L.cred),transports:['internal','hybrid']}],userVerification:'required',timeout:60000}});
+    if(c&&b64(c.rawId)===L.cred){unlockNow();return}$('lockMsg').textContent='That didn’t match. Try again or use your passcode.'}
+  catch(e){$('lockMsg').textContent=e&&e.name==='NotAllowedError'?'Tap below to unlock with Face ID.':'Face ID isn’t available right now. Use your passcode.'}
+  finally{unlocking=false}}
+function unlockNow(){setLocked(false);hideAt=0;$('lockMsg').textContent='Unlock with Face ID to open your apps.';$('lockMain').hidden=false;$('lockPin').hidden=true;pinBuf='';render();renderHomeIfOpen()}
+function drawPin(){$('pinDots').replaceChildren(...Array.from({length:Math.max(4,lockCfg().pinLen||4)},(_,i)=>el('i',{class:i<pinBuf.length?'on':''})))}
+function showPin(){$('lockMain').hidden=true;$('lockPin').hidden=false;$('lockMsg').textContent='Enter your passcode.';pinBuf='';drawPin()}
+$('pinPad').append(...['1','2','3','4','5','6','7','8','9','','0','⌫'].map(x=>el('button',{type:'button',class:x?'':'blank','aria-label':x==='⌫'?'Delete':x||null,onclick:async()=>{
+  if(Date.now()<pinWait){$('lockMsg').textContent='Too many tries. Wait a moment.';return}
+  if(x==='⌫'){pinBuf=pinBuf.slice(0,-1);drawPin();return}const L=lockCfg(),n=L.pinLen||4;if(pinBuf.length>=n)return;pinBuf+=x;drawPin();
+  if(pinBuf.length===n){const ok=(await pinHash(pinBuf,L.salt))===L.pin;if(ok){pinFails=0;unlockNow()}else{pinFails++;pinBuf='';const d=$('pinDots');d.classList.remove('shake');void d.offsetWidth;d.classList.add('shake');drawPin();
+    if(pinFails>=5){pinWait=Date.now()+30000;pinFails=0;$('lockMsg').textContent='Too many tries. Wait 30 seconds.'}else $('lockMsg').textContent='Wrong passcode. Try again.'}}}},x)));
+$('unlockBtn').onclick=faceUnlock;$('pinBtn').onclick=showPin;$('faceBtn').onclick=()=>{$('lockMain').hidden=false;$('lockPin').hidden=true;$('lockMsg').textContent='Unlock with Face ID to open your apps.';faceUnlock()};
+function renderLockSettings(){const L=lockCfg();$('lockToggle').checked=!!L.on;$('lockAfterRow').hidden=!L.on;$('lockAfter').value=String(L.after||0);
+  $('lockNote').textContent=L.on?(L.cred?'On. Face ID, with your passcode as backup.':'On, with passcode only.'):'Ask for Face ID when the app opens.'}
+function pinSetup(done){let first='',buf='';const dots=el('div',{class:'pinrow'}),msg=el('p',{class:'note',style:'text-align:center;margin:8px 0 0'},'Choose a 4-digit backup passcode.');
+  const draw=()=>dots.replaceChildren(...[0,1,2,3].map(i=>el('i',{class:i<buf.length?'on':''})));draw();
+  const pad=el('div',{class:'pinpad',style:'margin-top:12px'},...['1','2','3','4','5','6','7','8','9','','0','⌫'].map(x=>el('button',{type:'button',class:x?'':'blank',onclick:async()=>{
+    if(x==='⌫'){buf=buf.slice(0,-1);draw();return}if(buf.length>=4)return;buf+=x;draw();if(buf.length<4)return;
+    if(!first){first=buf;buf='';msg.textContent='Enter it again to confirm.';setTimeout(draw,150);return}
+    if(buf!==first){first='';buf='';msg.textContent='Those didn’t match. Choose a passcode again.';dots.classList.remove('shake');void dots.offsetWidth;dots.classList.add('shake');setTimeout(draw,150);return}
+    const salt=b64(rnd(16));done({pin:await pinHash(buf,salt),salt,pinLen:4})}},x)));
+  openSheet(el('h2',{},'Backup passcode'),el('p',{class:'note',style:'margin:0'},'You’ll use this if Face ID doesn’t work.'),msg,dots,pad,el('div',{class:'actions'},el('button',{class:'btn',type:'button',onclick:()=>{closeSheet();renderLockSettings()}},'Cancel')))}
+$('lockToggle').onchange=async e=>{
+  if(e.target.checked){e.target.checked=false;let cred=null;
+    try{if(window.PublicKeyCredential&&await PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable()){
+      const c=await navigator.credentials.create({publicKey:{challenge:rnd(32),rp:{name:'Consistency'},user:{id:rnd(16),name:(S.settings.name||'me').toLowerCase()+'@consistency',displayName:S.settings.name||'Me'},
+        pubKeyCredParams:[{type:'public-key',alg:-7},{type:'public-key',alg:-257}],authenticatorSelection:{authenticatorAttachment:'platform',userVerification:'required',residentKey:'preferred'},timeout:60000}});cred=b64(c.rawId)}}
+    catch(err){if(err&&err.name==='NotAllowedError'){toast('Face ID was cancelled.');return}}
+    if(!cred)toast('Face ID isn’t available here, so the lock will use a passcode.');
+    pinSetup(p=>{S.settings={...S.settings,lock:{on:true,cred,after:0,...p}};save();closeSheet();renderLockSettings();toast(cred?'Face ID lock on':'Passcode lock on')})}
+  else{e.target.checked=true;const L=lockCfg();
+    const off=()=>{S.settings={...S.settings,lock:{on:false}};save();renderLockSettings();toast('Lock off')};
+    if(L.cred){try{const c=await navigator.credentials.get({publicKey:{challenge:rnd(32),allowCredentials:[{type:'public-key',id:unb64(L.cred),transports:['internal','hybrid']}],userVerification:'required',timeout:60000}});if(c&&b64(c.rawId)===L.cred){off();return}}catch(err){}}
+    toast('Unlock to turn the lock off.');setLocked(true);showPin();const wait=setInterval(()=>{if(!document.documentElement.hasAttribute('data-locked')){clearInterval(wait);off()}},300)}};
+$('lockAfter').onchange=e=>{S.settings={...S.settings,lock:{...lockCfg(),after:+e.target.value}};save();renderLockSettings()};
+let hideAt=0;
+document.addEventListener('visibilitychange',()=>{const L=lockCfg();if(!L.on)return;
+  if(document.hidden){hideAt=Date.now();if(!(L.after>0))setLocked(true)}
+  else if(hideAt&&(Date.now()-hideAt)/1000>=(L.after||0)){setLocked(true);faceUnlock()}});
+
 /* ---------- boot ---------- */
 try{const d=JSON.parse(localStorage.getItem(LS)||'null');if(d){S.habits=d.habits||{};S.days=d.days||{};S.settings=d.settings||{};S.reviews=d.reviews||{};
   const lb=localStorage.getItem(LS+'-lastbackup');if(lb&&!S.settings.lastBackup)S.settings.lastBackup=lb}}catch(e){}
 applyTheme();$('verNote').textContent='Version '+VERSION+'. Updates download automatically when you’re online.';
 {let ch=false;const o={...S.habits};for(const id in o){if(o[id].color==='#3E8E6A'||o[id].color==='#1E3A8A'){o[id]={...o[id],color:'#2F5BD3'};ch=true}}if(ch){S.habits=o;save()}}
-bload();if(S.settings.name==null)S.settings.name='Andrew';
+bload();if(S.settings.name==null)S.settings.name='Andrew';renderLockSettings();if(lockCfg().on){setLocked(true);setTimeout(faceUnlock,250)}
 render();goHome();
 if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
 if('serviceWorker' in navigator){const had=!!navigator.serviceWorker.controller;let done=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&!done){done=true;location.reload()}});navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{})}

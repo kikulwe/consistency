@@ -448,6 +448,74 @@ select.pill{padding:9px 14px;border-radius:999px;border:0;background:var(--g-str
 :root[data-look="black"] .tabbar.glass{background:rgba(20,21,25,.92);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
 :root[data-look="black"] .app .ico{box-shadow:none}
 
+/* ---------- budget v2 ---------- */
+.prog{display:flex;gap:6px;padding:0 6px}
+.prog i{flex:1;height:4px;border-radius:9px;background:var(--track)}
+.prog i.on{background:var(--accent)}
+.bin{width:100%;min-width:0;padding:12px 14px;border:0;border-radius:14px;background:var(--field);box-shadow:inset 0 1px 3px rgba(0,0,0,.15);font-size:15px}
+.bin::placeholder{color:var(--muted)}
+.money{position:relative}
+.money .bin{padding-left:54px;font-weight:700}
+.money::before{content:"UGX";position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:700;color:var(--muted);pointer-events:none}
+.erow{display:grid;grid-template-columns:minmax(0,1fr) 124px 36px;gap:8px;align-items:center;padding:10px 12px;border-top:1px solid var(--divider)}
+.billrow{display:grid;grid-template-columns:minmax(0,1fr) 96px 64px 36px;gap:6px;align-items:center;padding:10px 12px;border-top:1px solid var(--divider)}
+.erow:first-child,.billrow:first-child{border-top:0}
+.erow .bin,.billrow .bin{padding:10px 11px;font-size:14px}
+.erow .num,.billrow .num{text-align:right;font-weight:700}
+.billrow select.bin{padding:10px 6px}
+.xbtn{width:36px;height:36px;border-radius:50%;border:0;background:var(--g-strong);color:var(--muted);font-size:18px;line-height:1}
+.addline{display:block;width:100%;border:0;border-top:1px solid var(--divider);background:transparent;color:var(--accent);font-weight:700;font-size:14px;padding:14px}
+.btot{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px}
+.btot b{font-size:15px}
+.btot span.s{display:block;font-size:12px;color:var(--muted)}
+.bhero{display:flex;align-items:center;gap:16px;padding:16px}
+.bhero svg{width:96px;height:96px;flex:none}
+.bhero svg text{font-family:var(--font);fill:var(--fg)}
+.bhero>div{flex:1;min-width:0}
+.bhero .big{font-size:28px;font-weight:800;line-height:1.1;margin:2px 0}
+.bhero .big.neg{color:var(--danger)}
+.bhero .s{font-size:12.5px;color:var(--muted);line-height:1.45}
+.bcat{display:block;width:100%;padding:14px 16px;border:0;border-top:1px solid var(--divider);background:transparent;text-align:left;color:inherit}
+.bcat:first-child{border-top:0}
+.bcat .r1{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.bcat .r1 b{font-size:14.5px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bcat .r1 em{font-style:normal;font-size:13px;font-weight:700;flex:none}
+.bcat .r1 em.over{color:var(--danger)}
+.bcat .bar{height:8px;border-radius:9px;background:var(--track);margin:8px 0 5px;overflow:hidden}
+.bcat .bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,var(--accent-top),var(--accent-solid));transition:width .4s}
+.bcat .bar i.warnb{background:linear-gradient(90deg,#FFD08A,var(--warn))}
+.bcat .r2{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--muted);font-weight:600}
+.stat3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.stat3>div{padding:12px 14px;min-width:0}
+.stat3 b{display:block;font-size:16px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stat3 span{font-size:11px;color:var(--muted);font-weight:600}
+.calnav{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 12px 4px}
+.calnav>div{text-align:center;min-width:0}
+.calnav b{display:block;font-size:16px}
+.calnav span{font-size:11.5px;color:var(--muted);font-weight:600}
+.calnav .nav{width:36px;height:36px;border-radius:50%;border:0;background:var(--g-strong);font-size:18px;line-height:1;color:var(--fg)}
+.calnav .nav:disabled{opacity:.35}
+.bcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;padding:6px 10px 12px}
+.bcal .wd{font-size:10px;font-weight:700;color:var(--muted);text-align:center}
+.bcal button{aspect-ratio:.82;border:0;border-radius:12px;background:var(--g-strong);color:var(--fg);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1px;padding:5px 0 0;position:relative;min-width:0;box-shadow:none}
+.bcal button .d{font-size:11.5px;font-weight:700}
+.bcal button .a{font-size:9.5px;font-weight:700}
+.bcal button.l1{background:color-mix(in srgb,var(--accent) 25%,transparent)}
+.bcal button.l2{background:color-mix(in srgb,var(--accent) 45%,transparent)}
+.bcal button.l3{background:color-mix(in srgb,var(--accent) 65%,transparent)}
+.bcal button.l4{background:color-mix(in srgb,var(--danger) 55%,transparent)}
+.bcal button.future{opacity:.45}
+.bcal button.today{box-shadow:inset 0 0 0 2px var(--fg)}
+.bcal button.sel{box-shadow:inset 0 0 0 2px var(--accent)}
+.bcal button .bd{position:absolute;bottom:4px;width:6px;height:6px;border-radius:50%;background:var(--warn)}
+.bcal .blank{visibility:hidden}
+.clegend{display:flex;gap:10px;flex-wrap:wrap;padding:0 16px 14px;font-size:11px;color:var(--muted);font-weight:600}
+.clegend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.payb{margin-top:6px;padding:6px 12px;font-size:12px}
+.newcat{display:grid;grid-template-columns:minmax(0,1fr) 110px auto;gap:6px;margin-top:6px}
+.newcat .bin{padding:10px 11px;font-size:14px}
+.newcat .btn{padding:10px 14px}
+
 /* swipe back */
 .edgehint{position:fixed;left:calc(6px + env(safe-area-inset-left,0px));top:50%;width:40px;height:40px;margin-top:-20px;border-radius:50%;z-index:40;display:grid;place-items:center;font-size:22px;font-weight:700;color:var(--fg);background:var(--sheet);box-shadow:0 6px 18px rgba(0,0,0,.3);opacity:0;pointer-events:none;transform:translateX(-50px)}
 main.app.swiping{transition:none}
@@ -561,34 +629,54 @@ main.app{transition:transform .25s ease}
     <div class="glass slist" id="glance"></div>
   </section>
 
-  <section class="view" id="v-b-overview" aria-label="Budget overview" hidden>
-    <div class="hd"><div><p class="eyebrow" id="bMonth">Budget</p><h1>Overview</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
-    <div class="safe glass" id="safeCard"></div>
-    <div class="sec-row"><p class="sec-t">Accounts</p><span class="note" id="netWorth"></span></div>
-    <div class="accts" id="accts"></div>
-    <div class="sec-row"><p class="sec-t">Bills</p><button class="linkbtn" type="button" id="toPlan">Edit in Plan</button></div>
-    <div class="blist glass" id="billList"></div>
-    <div class="sec-row"><p class="sec-t">Recent</p><button class="linkbtn" type="button" id="toAct">See all</button></div>
-    <div class="blist glass" id="recent"></div>
+  <section class="view" id="v-b-overview" aria-label="Budget" hidden>
+    <div class="hd"><div><p class="eyebrow" id="bMonth">Budget</p><h1>Budget</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
+    <div class="bhero glass" id="bHero"></div>
+    <div class="sec-row"><p class="sec-t">Categories</p><button class="linkbtn" type="button" id="bEditCats">Edit</button></div>
+    <div class="blist glass" id="bCats"></div>
+    <div class="sec-row"><p class="sec-t">Next bills</p><button class="linkbtn" type="button" id="bAllBills">All bills</button></div>
+    <div class="blist glass" id="bNext"></div>
+    <div class="sec-row"><p class="sec-t">Recent spends</p><button class="linkbtn" type="button" id="bToCal">Calendar</button></div>
+    <div class="blist glass" id="bRecent"></div>
   </section>
 
-  <section class="view" id="v-b-plan" aria-label="Budget plan" hidden>
-    <div class="hd"><div><p class="eyebrow" id="planSub">This month</p><h1>Plan</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
-    <button class="assign glass" type="button" id="assignCard"></button>
-    <div id="envGroups"></div>
-    <button class="btn wide" type="button" id="addEnv">+ Add envelope</button>
+  <section class="view" id="v-b-calendar" aria-label="Spending calendar" hidden>
+    <div class="hd"><div><p class="eyebrow">Money spent per day</p><h1>Calendar</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
+    <div class="stat3" id="bStats"></div>
+    <div class="glass">
+      <div class="calnav"><button class="nav" type="button" id="bPrevM" aria-label="Previous month">‹</button><div><b id="bCalT"></b><span id="bCalS"></span></div><button class="nav" type="button" id="bNextM" aria-label="Next month">›</button></div>
+      <div class="bcal" id="bCal"></div>
+      <div class="clegend"><span><i style="background:color-mix(in srgb,var(--accent) 25%,transparent)"></i>Light</span><span><i style="background:color-mix(in srgb,var(--accent) 65%,transparent)"></i>Heavy</span><span><i style="background:color-mix(in srgb,var(--danger) 55%,transparent)"></i>Over daily limit</span><span><i style="background:var(--warn);border-radius:50%"></i>Bill due</span></div>
+    </div>
+    <p class="sec-t" id="bDayT">Today</p>
+    <div class="blist glass" id="bDay"></div>
   </section>
 
-  <section class="view" id="v-b-activity" aria-label="Budget activity" hidden>
-    <div class="hd"><div><p class="eyebrow" id="actSub">This month</p><h1>Activity</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
-    <div class="donut glass" id="donut"></div>
-    <div id="txDays"></div>
+  <section class="view" id="v-b-bills" aria-label="Bills" hidden>
+    <div class="hd"><div><p class="eyebrow" id="bBillSub">Monthly</p><h1>Bills</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
+    <div class="blist glass" id="bBills"></div>
+    <button class="btn wide" type="button" id="bEditBills">+ Add or edit bills</button>
   </section>
 
-  <section class="view" id="v-b-goals" aria-label="Savings goals" hidden>
-    <div class="hd"><div><p class="eyebrow" id="goalSub">Savings</p><h1>Goals</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
-    <div id="goalList"></div>
-    <button class="btn wide" type="button" id="addGoal">+ New goal</button>
+  <section class="view" id="v-b-setup" aria-label="Set your budget" hidden>
+    <div class="prog" id="bProg1"><i class="on"></i><i></i></div>
+    <div class="hd"><div><p class="eyebrow" id="bSetupStep">Your monthly plan</p><h1>Set your budget</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
+    <div class="glass card"><div class="field" style="margin:0"><label for="bInc">Money you get each month</label><div class="money"><input class="bin" id="bInc" inputmode="numeric" placeholder="0" autocomplete="off"></div></div></div>
+    <div class="sec-row"><p class="sec-t">Categories</p><span class="note">Name · Amount</span></div>
+    <div class="blist glass" id="bCatEdit"></div>
+    <div class="btot glass" id="bPlanTot"></div>
+    <button class="btn pri wide" type="button" id="bSetupNext">Save</button>
+    <button class="btn wide" type="button" id="bSetupBills">Edit bills</button>
+  </section>
+
+  <section class="view" id="v-b-setup2" aria-label="Your bills" hidden>
+    <div class="prog" id="bProg2"><i class="on"></i><i class="on"></i></div>
+    <div class="hd"><div><p class="eyebrow" id="bSetup2Step">Fixed payments</p><h1>Your bills</h1></div><button class="homebtn glass" type="button" data-home aria-label="Home"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/></svg></button></div>
+    <p class="note" style="margin:0 6px;line-height:1.5">Rent, internet, subscriptions: anything with a due date. If a bill has the same name as a category, marking it paid logs the spend there too.</p>
+    <div class="sec-row"><p class="sec-t">Bills</p><span class="note">Name · Amount · Due day</span></div>
+    <div class="blist glass" id="bBillEdit"></div>
+    <button class="btn pri wide" type="button" id="bBillsSave">Save bills</button>
+    <button class="btn wide" type="button" id="bBillsBack">Back</button>
   </section>
 </main>
 
@@ -600,11 +688,11 @@ main.app{transition:transform .25s ease}
 </nav>
 <nav class="tabbar glass" id="dock-b" role="tablist" aria-label="Budget sections" hidden>
   <span class="lens" id="lensB"></span>
-  <button type="button" role="tab" aria-selected="true" data-bt="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5l9-7.5 9 7.5M5.5 9.5V20h13V9.5"/></svg>Overview</button>
-  <button type="button" role="tab" aria-selected="false" data-bt="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M3 10h18M9 10v10"/></svg>Plan</button>
-  <button type="button" class="plus" id="plusB" aria-label="Add a transaction"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
-  <button type="button" role="tab" aria-selected="false" data-bt="activity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>Activity</button>
-  <button type="button" role="tab" aria-selected="false" data-bt="goals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Goals</button>
+  <button type="button" role="tab" aria-selected="true" data-bt="overview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5l9-7.5 9 7.5M5.5 9.5V20h13V9.5"/></svg>Budget</button>
+  <button type="button" role="tab" aria-selected="false" data-bt="calendar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Calendar</button>
+  <button type="button" class="plus" id="plusB" aria-label="Log a spend"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+  <button type="button" role="tab" aria-selected="false" data-bt="bills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>Bills</button>
+  <button type="button" role="tab" aria-selected="false" data-bt="setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Setup</button>
 </nav>
 <div class="lock" id="lockScreen" role="dialog" aria-modal="true" aria-label="Locked">
   <div class="lk"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
@@ -982,7 +1070,7 @@ $('exportBtn').onclick=async()=>{
   catch(err){if(err&&err.name!=='AbortError')toast('Couldn’t create the backup. Try again.')}};
 $('importFile').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
   try{const d=JSON.parse(await f.text());if(!d||typeof d.habits!=='object'||typeof d.days!=='object')throw 0;
-    S.habits=d.habits;S.days=d.days;S.reviews=d.reviews||{};if(d.budget&&Array.isArray(d.budget.cats)){B=d.budget;bsave()}S.settings={...(d.settings||{}),...{badge:S.settings.badge}};save();render();toast('Restored '+Object.keys(d.habits).length+' habits and '+Object.keys(d.days).length+' days.')}
+    S.habits=d.habits;S.days=d.days;S.reviews=d.reviews||{};if(d.budget&&d.budget.v===2){B=d.budget;bsave()}S.settings={...(d.settings||{}),...{badge:S.settings.badge}};save();render();toast('Restored '+Object.keys(d.habits).length+' habits and '+Object.keys(d.days).length+' days.')}
   catch(err){toast('That file isn’t a Consistency backup.')}};
 
 /* ---------- theme ---------- */
@@ -1005,7 +1093,7 @@ function openLook(){openSheet(el('h2',{},'Appearance'),el('p',{class:'note',styl
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{if((S.settings.theme||'dark')==='system')applyTheme()});
 
 /* ---------- updates ---------- */
-const VERSION='4.2';
+const VERSION='5.0';
 $('updBtn').onclick=async()=>{const b=$('updBtn');b.disabled=true;b.textContent='Checking…';
   try{const reg=await navigator.serviceWorker.getRegistration();if(reg)await reg.update();
     const r=await fetch('./?v='+Date.now(),{cache:'no-store'});const html=await r.text();const m=html.match(/const VERSION='([^']+)'/);
@@ -1022,209 +1110,173 @@ $('openC').onclick=()=>tab('today');
 $('lookBtn').onclick=openLook;
 $('openB').onclick=()=>btab('overview');
 
-/* ---------- budget: data ---------- */
-const BK='super-budget-v1';
+/* ---------- budget: data (v2, you set everything) ---------- */
+const BK='super-budget-v2';
 let B=null;
-function bdefault(){return{start:today().slice(0,7),income:2600000,months:{},tx:[],goals:[],tab:'overview',
-  accts:[{id:'cash',name:'Cash',color:'#2F9E63',short:'UGX',start:0},{id:'mtn',name:'MTN MoMo',color:'#FFCB05',ink:'#1A1A1A',short:'MTN',start:0},{id:'airtel',name:'Airtel Money',color:'#E4002B',short:'AIR',start:0},{id:'bank',name:'Bank',color:'#3B5BDB',short:'BNK',start:0}],
-  cats:[{id:'rent',name:'Rent',e:'🏠',amt:350000,kind:'bill'},{id:'save',name:'Savings',e:'🏦',amt:1000000,kind:'save'},{id:'fam',name:'Family support',e:'👨‍👩‍👧',amt:250000,kind:'bill'},
-    {id:'net',name:'Internet',e:'🌐',amt:100000,kind:'bill'},{id:'claude',name:'Claude',e:'✳️',amt:80000,kind:'bill'},{id:'work',name:'Work stuff',e:'💼',amt:300000,kind:'flex'},
-    {id:'food',name:'Food',e:'🍲',amt:250000,kind:'flex'},{id:'trans',name:'Transport',e:'🛵',amt:120000,kind:'flex'},{id:'fun',name:'Fun',e:'🎉',amt:70000,kind:'flex'},
-    {id:'barber',name:'Barber',e:'💈',amt:50000,kind:'flex'},{id:'laundry',name:'Laundry',e:'🧺',amt:30000,kind:'flex'}]}}
-function bload(){try{B=JSON.parse(localStorage.getItem(BK)||'null')}catch(e){B=null}if(!B||!Array.isArray(B.cats))B=bdefault()}
+const bblank=()=>({v:2,setupDone:false,income:0,cats:[],bills:[],spends:[],tab:'overview'});
+function bload(){try{B=JSON.parse(localStorage.getItem(BK)||'null')}catch(e){B=null}if(!B||B.v!==2)B=bblank()}
 function bsave(){try{localStorage.setItem(BK,JSON.stringify(B))}catch(e){toast('Couldn’t save. Your phone storage may be full.')}}
 const UGX=n=>Math.round(n).toLocaleString('en-US');
 const kf=n=>{const a=Math.abs(n),s=n<0?'−':'';return s+(a>=1e6?(a/1e6).toFixed(2).replace(/\.?0+$/,'')+'M':a>=1000?Math.round(a/1000)+'k':String(Math.round(a)))};
+const digits=v=>+String(v).replace(/[^\d]/g,'')||0;
+const bid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,5);
 const curYM=()=>today().slice(0,7);
-const nextYM=ym=>{const[y,m]=ym.split('-').map(Number);const d=new Date(y,m,1);return d.getFullYear()+'-'+pad(d.getMonth()+1)};
-const ymName=ym=>{const[y,m]=ym.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString(undefined,{month:'long'})};
-const catOf=id=>B.cats.find(c=>c.id===id);
-const acctOf=id=>B.accts.find(a=>a.id===id)||B.accts[0];
-const liveCats=()=>B.cats.filter(c=>!c.archived);
-const mon=ym=>B.months[ym]||{};
-const allocOf=(c,ym)=>{const m=mon(ym);return m.alloc&&m.alloc[c.id]!=null?m.alloc[c.id]:c.amt};
-const incomeOf=ym=>{const m=mon(ym);return m.income!=null?m.income:B.income};
-function spentOf(c,ym){let s=0;for(const t of B.tx)if(t.type==='out'&&t.cat===c.id&&t.date.slice(0,7)===ym)s+=t.amt;return s}
-function carryOf(c,ym){if(c.kind!=='flex')return 0;let carry=0,g=0;for(let m=B.start;m<ym&&g++<240;m=nextYM(m))carry=Math.max(0,carry+allocOf(c,m)-spentOf(c,m));return carry}
-const availOf=(c,ym)=>allocOf(c,ym)+carryOf(c,ym);
-const toAssign=ym=>incomeOf(ym)-liveCats().reduce((s,c)=>s+allocOf(c,ym),0);
-const safeToSpend=()=>{const ym=curYM();return liveCats().filter(c=>c.kind==='flex').reduce((s,c)=>s+availOf(c,ym)-spentOf(c,ym),0)};
+const ymName=(ym,yr)=>{const[y,m]=ym.split('-').map(Number);return new Date(y,m-1,1).toLocaleDateString(undefined,yr?{month:'long',year:'numeric'}:{month:'long'})};
+const shiftYM=(ym,n)=>{const[y,m]=ym.split('-').map(Number);const d=new Date(y,m-1+n,1);return d.getFullYear()+'-'+pad(d.getMonth()+1)};
+const dimOf=ym=>{const[y,m]=ym.split('-').map(Number);return new Date(y,m,0).getDate()};
 const daysLeft=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth()+1,0).getDate()-d.getDate()+1};
-function balOf(a){let b=+a.start||0;for(const t of B.tx){if(t.type==='in'&&t.acc===a.id)b+=t.amt;else if(t.type==='out'&&t.acc===a.id)b-=t.amt;else if(t.type==='mv'){if(t.acc===a.id)b-=t.amt;if(t.to===a.id)b+=t.amt}}return b}
-function billInfo(c){const ym=curYM(),al=allocOf(c,ym),paid=al>0&&spentOf(c,ym)>=al;
-  const mk=y=>{const[yy,mm]=y.split('-').map(Number);return y+'-'+pad(Math.min(c.day,new Date(yy,mm,0).getDate()))};
-  return{c,paid,date:c.day?(paid?mk(nextYM(ym)):mk(ym)):null}}
-const billsSorted=()=>liveCats().filter(c=>c.kind==='bill').map(billInfo).sort((a,b)=>(a.paid-b.paid)||((a.date||'9')<(b.date||'9')?-1:1));
-function dueChip(b){if(b.paid&&!b.date)return['Paid','ok'];if(!b.date)return['Set due date',''];const n=Math.round((parse(b.date)-parse(today()))/864e5);
-  if(b.paid)return['Paid · next '+fmt(b.date,{day:'numeric',month:'short'}),'ok'];if(n<0)return['Overdue','late'];if(n===0)return['Due today','soon'];if(n===1)return['Tomorrow','soon'];if(n<=7)return['In '+n+' days','soon'];return[fmt(b.date,{day:'numeric',month:'short'}),'']}
-function goalETA(g){if(g.saved>=g.target)return'Reached 🎉';if(!(g.monthly>0))return'Set a monthly amount to see a finish date';const n=Math.ceil((g.target-g.saved)/g.monthly);const d=new Date();d.setMonth(d.getMonth()+n);return kf(g.monthly)+' a month → done '+d.toLocaleDateString(undefined,{month:'short',year:'numeric'})}
+const ord=n=>n%10===1&&n!==11?'st':n%10===2&&n!==12?'nd':n%10===3&&n!==13?'rd':'th';
+const bcat=id=>B.cats.find(c=>c.id===id);
+const monthSpends=ym=>B.spends.filter(s=>s.date.slice(0,7)===ym);
+const spentCat=(id,ym)=>monthSpends(ym).filter(s=>s.cat===id).reduce((t,s)=>t+s.amt,0);
+const spentDay=k=>B.spends.filter(s=>s.date===k).reduce((t,s)=>t+s.amt,0);
+const budgetTotal=()=>B.cats.reduce((t,c)=>t+(+c.amt||0),0);
+const spentMonth=ym=>monthSpends(ym).reduce((t,s)=>t+s.amt,0);
+const leftThisMonth=()=>budgetTotal()-spentMonth(curYM());
+const billPaid=(b,ym)=>!!(b.paid&&b.paid[ym]);
+const billDate=(b,ym)=>ym+'-'+pad(Math.min(b.day,dimOf(ym)));
+function billChip(b){const ym=curYM();if(billPaid(b,ym))return['Paid','ok'];const n=Math.round((parse(billDate(b,ym))-parse(today()))/864e5);
+  if(n<0)return['Overdue · '+(-n)+'d','late'];if(n===0)return['Due today','soon'];if(n<=5)return['In '+n+(n===1?' day':' days'),'soon'];return['Due '+b.day+ord(b.day),'']}
+const billsByDate=()=>[...B.bills].sort((a,b)=>billPaid(a,curYM())-billPaid(b,curYM())||a.day-b.day);
+const catNameMatch=name=>B.cats.find(c=>c.name.trim().toLowerCase()===String(name).trim().toLowerCase());
 
-/* ---------- budget: views ---------- */
-const BTABS=['overview','plan','activity','goals'];
-function btab(t){S.app='b';hideAll();B.tab=t;$('dock-b').hidden=false;
-  BTABS.forEach(k=>{$('v-b-'+k).hidden=k!==t;document.querySelector('#dock-b [data-bt="'+k+'"]').setAttribute('aria-selected',String(k===t))});
-  $('lensB').style.transform='translateX('+[0,1,3,4][BTABS.indexOf(t)]*100+'%)';window.scrollTo(0,0);renderB()}
+/* ---------- budget: navigation ---------- */
+const BTABS=['overview','calendar','bills','setup'];
+let calYM=null,calSel=null,draftCats=null,draftBills=null,draftInc=0;
+function btab(t){S.app='b';hideAll();if(!B.setupDone&&t!=='setup2')t='setup';B.tab=t;
+  $('dock-b').hidden=!B.setupDone;['overview','calendar','bills','setup','setup2'].forEach(k=>$('v-b-'+k).hidden=k!==t);
+  BTABS.forEach(k=>document.querySelector('#dock-b [data-bt="'+k+'"]').setAttribute('aria-selected',String(k===t||(k==='setup'&&t==='setup2'))));
+  const i=BTABS.indexOf(t==='setup2'?'setup':t);$('lensB').style.transform='translateX('+[0,1,3,4][i]*100+'%)';
+  if(t==='setup'){draftInc=B.income;draftCats=B.cats.length?B.cats.map(c=>({...c})):[{id:bid('c'),name:'',amt:0},{id:bid('c'),name:'',amt:0},{id:bid('c'),name:'',amt:0}]}
+  if(t==='setup2')draftBills=B.bills.length?B.bills.map(b=>({...b})):[{id:bid('b'),name:'',amt:0,day:'',paid:{}}];
+  if(t==='calendar'&&!calYM){calYM=curYM();calSel=today()}
+  window.scrollTo(0,0);renderB()}
 document.querySelectorAll('#dock-b [data-bt]').forEach(b=>b.onclick=()=>btab(b.dataset.bt));
-$('plusB').onclick=()=>openTx();
-$('toPlan').onclick=()=>btab('plan');$('toAct').onclick=()=>btab('activity');
-$('addEnv').onclick=()=>editEnv(null);$('addGoal').onclick=()=>editGoal(null);
-function renderB(){({overview:rOverview,plan:rPlan,activity:rActivity,goals:rGoals})[B.tab||'overview']()}
-function txRow(t){const c=catOf(t.cat),a=acctOf(t.acc);let em='💸',title=t.note||'',sub='',sign='−',cls='';
-  if(t.type==='out'){em=c?c.e:'💸';title=title||(c?c.name:'Spend');sub=(c?c.name:'Uncategorised')+' · '+a.name}
-  else if(t.type==='in'){em='💰';title=title||'Money in';sub='Received · '+a.name;sign='+';cls=' in'}
-  else{em='🔁';title=title||'Transfer';sub=a.name+' → '+acctOf(t.to).name;sign=''}
-  return el('button',{class:'li',type:'button',onclick:()=>openTx(t.id)},el('span',{class:'em'},em),el('span',{class:'tx'},el('b',{},title),el('span',{},sub)),el('span',{class:'v'+cls},sign+UGX(t.amt)))}
-function rOverview(){
-  const ym=curYM(),inc=incomeOf(ym),sf=safeToSpend(),dl=daysLeft();
-  $('bMonth').textContent=ymName(ym)+' · Budget';
-  const billAlloc=liveCats().filter(c=>c.kind==='bill').reduce((s,c)=>s+allocOf(c,ym),0);
-  const saved=liveCats().filter(c=>c.kind==='save').reduce((s,c)=>s+spentOf(c,ym),0);
-  const spent=liveCats().filter(c=>c.kind==='flex').reduce((s,c)=>s+spentOf(c,ym),0);
-  const pc=v=>inc>0?Math.min(100,Math.round(v/inc*100)):0;
-  $('safeCard').replaceChildren(el('p',{class:'eyebrow'},'Safe to spend'),
-    el('div',{class:'amt'+(sf<0?' neg':'')},el('sup',{},'UGX'),(sf<0?'−':'')+UGX(Math.abs(sf))),
-    el('div',{class:'per'},sf>0?'About '+UGX(sf/dl)+' a day for the next '+dl+(dl===1?' day':' days'):sf<0?'Over budget. Move money from another envelope in Plan.':'Nothing left in everyday envelopes this month.'),
-    el('div',{class:'mbar','aria-hidden':'true'},el('i',{style:'width:'+pc(billAlloc)+'%;background:#8DB0FF'}),el('i',{style:'width:'+pc(saved)+'%;background:#4FD69C'}),el('i',{style:'width:'+pc(spent)+'%;background:#FFB547'})),
-    el('div',{class:'mleg'},el('span',{},el('b',{style:'background:#8DB0FF'}),'Bills '+pc(billAlloc)+'%'),el('span',{},el('b',{style:'background:#4FD69C'}),'Saved '+pc(saved)+'%'),el('span',{},el('b',{style:'background:#FFB547'}),'Spent '+pc(spent)+'%')));
-  const unset=B.accts.every(a=>!(+a.start))&&!B.tx.some(t=>t.type==='in');
-  $('netWorth').textContent=unset?'Tap an account to set its balance':'Net worth '+kf(B.accts.reduce((s,a)=>s+balOf(a),0));
-  $('accts').replaceChildren(...B.accts.map(a=>el('button',{class:'acct glass',type:'button',onclick:()=>editAcct(a.id)},el('span',{class:'dot',style:'background:'+a.color+(a.ink?';color:'+a.ink:'')},a.short),el('b',{},kf(balOf(a))),el('span',{},a.name))));
-  const bl=billsSorted().slice(0,5);
-  $('billList').replaceChildren(...(bl.length?bl.map(b=>{const[t,cls]=dueChip(b);return el('button',{class:'li',type:'button',onclick:()=>billSheet(b.c.id)},el('span',{class:'em'},b.c.e),el('span',{class:'tx'},el('b',{},b.c.name),el('span',{},b.c.acc?acctOf(b.c.acc).name:'Monthly bill')),el('span',{class:'v'},UGX(allocOf(b.c,ym)),el('small',{},el('span',{class:'due '+cls},t))))}):[el('p',{class:'empty'},'No bills yet. Mark an envelope as a bill in Plan.')]));
-  const rc=[...B.tx].sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id)).slice(0,4);
-  $('recent').replaceChildren(...(rc.length?rc.map(txRow):[el('p',{class:'empty'},'Tap + to log your first spend.')]));
-}
-function rPlan(){
-  const ym=curYM(),ta=toAssign(ym),inc=incomeOf(ym);
-  $('planSub').textContent=ymName(ym)+' · '+UGX(inc)+' in';
-  const ac=$('assignCard');ac.className='assign glass'+(ta>0?' left':ta<0?' over':'');
-  ac.replaceChildren(el('span',{class:'zero'},ta===0?'0':kf(ta)),el('span',{},el('b',{},ta===0?'Every shilling has a job':ta>0?kf(ta)+' left to assign':'Over-assigned by '+kf(-ta)),el('span',{},ta===0?'Tap to change this month’s income':ta>0?'Add it to an envelope or a goal':'Lower an envelope or raise income')));
-  ac.onclick=editIncome;
-  const G=[['bill','Bills'],['save','Savings'],['flex','Everyday']];
-  $('envGroups').replaceChildren(...G.map(([kd,lbl])=>{const cs=liveCats().filter(c=>c.kind===kd);if(!cs.length)return null;
-    return el('div',{},el('p',{class:'sec-t',style:'margin:6px 8px 8px'},lbl),el('div',{class:'blist glass'},...cs.map(c=>{
-      const al=allocOf(c,ym),cr=carryOf(c,ym),av=al+cr,sp=spentOf(c,ym),left=av-sp,p=av>0?sp/av:sp>0?1:0;
-      let right,cls='';
-      if(kd==='flex'){if(left<0){right=el('em',{class:'over'},UGX(-left)+' over');cls='over'}else{right=el('em',{},UGX(left)+' left');if(p>=.85)cls='warnb'}}
-      else if(sp>=al&&al>0){right=el('em',{class:'done'},kd==='save'?'Saved ✓':'Paid ✓');cls='ok'}else right=el('em',{},UGX(al-sp)+' to go');
-      const note=kd==='flex'?(cr>0?'+'+UGX(cr)+' rolled over':'Rolls over if unspent'):kd==='bill'?(c.day?'Due on the '+c.day+ordinal(c.day):'No due date'):'Moves to goals';
-      return el('button',{class:'env',type:'button',onclick:()=>editEnv(c.id)},el('div',{class:'r1'},el('span',{},c.e),el('b',{},c.name),right),el('div',{class:'bar'},el('i',{class:cls,style:'width:'+Math.min(100,p*100)+'%'})),el('div',{class:'r2'},el('span',{},UGX(sp)+' of '+UGX(av)),el('span',{},note)))})))}).filter(Boolean));
-}
-function ordinal(n){return n%10===1&&n!==11?'st':n%10===2&&n!==12?'nd':n%10===3&&n!==13?'rd':'th'}
-function rActivity(){
-  const ym=curYM();$('actSub').textContent=ymName(ym);
-  const sp=liveCats().filter(c=>c.kind==='flex').map(c=>({c,s:spentOf(c,ym)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);const tot=sp.reduce((s,x)=>s+x.s,0);
-  const cols=['#8DB0FF','#4FD69C','#FFB547','#C59BFF','#FF8A8A','#5FD3E6','#F5A3D0','#B9E36A'];
-  if(!tot){$('donut').replaceChildren(el('p',{class:'empty',style:'width:100%'},'Your everyday spending breakdown shows up here.'))}
-  else{let a0=-Math.PI/2,R=46,cx=58,cy=58,arcs='';
-    sp.forEach((x,i)=>{const a1=a0+x.s/tot*Math.PI*2,gap=sp.length>1?.03:0,e=a1-a0>=Math.PI*2-.001?a1-.001:a1-gap;const large=e-a0>Math.PI?1:0;
-      arcs+=`<path d="M${(cx+R*Math.cos(a0)).toFixed(2)} ${(cy+R*Math.sin(a0)).toFixed(2)} A${R} ${R} 0 ${large} 1 ${(cx+R*Math.cos(e)).toFixed(2)} ${(cy+R*Math.sin(e)).toFixed(2)}" fill="none" stroke="${cols[i%cols.length]}" stroke-width="14" stroke-linecap="round"/>`;a0=a1});
-    $('donut').innerHTML=`<svg viewBox="0 0 116 116" role="img" aria-label="Everyday spending by envelope">${arcs}<text x="58" y="56" text-anchor="middle" font-size="16" font-weight="800">${kf(tot)}</text><text x="58" y="71" text-anchor="middle" font-size="8" font-weight="600" opacity=".6">everyday spend</text></svg>`;
-    $('donut').append(el('div',{class:'leg'},...sp.slice(0,7).map((x,i)=>el('div',{},el('i',{style:'background:'+cols[i%cols.length]}),x.c.name,el('span',{},kf(x.s))))))}
-  const txs=[...B.tx].sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id)).slice(0,120);
-  const days=[...new Set(txs.map(t=>t.date))];
-  $('txDays').replaceChildren(...(days.length?days.flatMap(d=>{const ts=txs.filter(t=>t.date===d),out=ts.filter(t=>t.type==='out').reduce((s,t)=>s+t.amt,0);
-    const lbl=d===today()?'Today':d===add(today(),-1)?'Yesterday':fmt(d,{weekday:'short',day:'numeric',month:'short'});
-    return[el('p',{class:'day'},lbl+(out?' · −'+UGX(out):'')),el('div',{class:'blist glass'},...ts.map(txRow))]}):[el('p',{class:'empty glass'},'No transactions yet. Tap + to add one.')]));
-}
-function rGoals(){
-  const sv=liveCats().find(c=>c.kind==='save'),ym=curYM();
-  $('goalSub').textContent=sv?'Saving '+UGX(allocOf(sv,ym))+' a month':'Savings';
-  $('goalList').replaceChildren(...(B.goals.length?B.goals.map((g,i)=>{const p=Math.min(1,g.target?g.saved/g.target:0),C=2*Math.PI*24,col=['#4FD69C','#8DB0FF','#FFB547','#C59BFF','#FF8A8A'][i%5];
-    const ring=document.createElementNS('http://www.w3.org/2000/svg','svg');ring.setAttribute('viewBox','0 0 60 60');ring.innerHTML=`<circle cx="30" cy="30" r="24" fill="none" stroke="var(--track)" stroke-width="6"/><circle cx="30" cy="30" r="24" fill="none" stroke="${col}" stroke-width="6" stroke-linecap="round" stroke-dasharray="${(p*C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 30 30)"/><text x="30" y="35" text-anchor="middle" font-size="16">${g.e||'🎯'}</text>`;
-    return el('button',{class:'goal glass',type:'button',style:'margin-bottom:10px',onclick:()=>goalSheet(g.id)},ring,el('div',{},el('b',{},g.name),el('span',{},UGX(g.saved)+' of '+UGX(g.target)+' · '+Math.round(p*100)+'%'),el('span',{class:'eta'},goalETA(g))))}):[el('p',{class:'empty glass'},'No goals yet. Add one, like an emergency fund, so your savings have a finish line.')]));
+$('plusB').onclick=()=>openSpend();
+$('bEditCats').onclick=()=>btab('setup');$('bAllBills').onclick=()=>btab('bills');$('bToCal').onclick=()=>btab('calendar');
+$('bEditBills').onclick=()=>btab('setup2');$('bSetupBills').onclick=()=>btab('setup2');
+$('bPrevM').onclick=()=>{calYM=shiftYM(calYM,-1);calSel=null;rCalendar()};$('bNextM').onclick=()=>{calYM=shiftYM(calYM,1);calSel=null;rCalendar()};
+function renderB(){({overview:rBOverview,calendar:rCalendar,bills:rBills,setup:rSetup,setup2:rSetup2})[B.tab||'overview']()}
+
+/* ---------- budget: setup ---------- */
+function rSetup(){
+  const first=!B.setupDone;$('bProg1').hidden=!first;$('bSetupStep').textContent=first?'Step 1 of 2':'Your monthly plan';
+  $('bSetupNext').textContent=first?'Next: add bills':'Save';$('bSetupBills').hidden=first;
+  const inc=$('bInc');inc.value=draftInc?UGX(draftInc):'';inc.oninput=()=>{draftInc=digits(inc.value);inc.value=draftInc?UGX(draftInc):'';planTot()};
+  const box=$('bCatEdit');
+  box.replaceChildren(...draftCats.map((c,i)=>{const n=el('input',{class:'bin',type:'text',maxlength:'30',placeholder:'e.g. Food','aria-label':'Category name'}),a=el('input',{class:'bin num',inputmode:'numeric',placeholder:'0','aria-label':'Amount for '+(c.name||'category')});
+    n.value=c.name;a.value=c.amt?UGX(c.amt):'';n.oninput=()=>{c.name=n.value};a.oninput=()=>{c.amt=digits(a.value);a.value=c.amt?UGX(c.amt):'';planTot()};
+    return el('div',{class:'erow'},n,a,el('button',{class:'xbtn',type:'button','aria-label':'Remove',onclick:()=>{draftCats.splice(i,1);if(!draftCats.length)draftCats.push({id:bid('c'),name:'',amt:0});rSetup()}},'×'))}),
+    el('button',{class:'addline',type:'button',onclick:()=>{draftCats.push({id:bid('c'),name:'',amt:0});rSetup();const ins=box.querySelectorAll('.erow input');ins[ins.length-2].focus()}},'+ Add category'));
+  planTot()}
+function planTot(){const t=draftCats.reduce((s,c)=>s+(c.amt||0),0),l=draftInc-t;
+  const[txt,cls]=!draftInc?['Enter your monthly money','soon']:l===0?['All planned ✓','ok']:l>0?[UGX(l)+' left to plan','soon']:[UGX(-l)+' over','late'];
+  $('bPlanTot').replaceChildren(el('div',{},el('b',{},UGX(t)),el('span',{class:'s'},'planned of '+UGX(draftInc))),el('span',{class:'due '+cls},txt))}
+$('bSetupNext').onclick=()=>{const ok=draftCats.filter(c=>c.name.trim()).map(c=>({...c,name:c.name.trim().slice(0,30)}));
+  if(!draftInc){toast('Enter the money you get each month.');$('bInc').focus();return}
+  if(!ok.some(c=>c.amt>0)){toast('Add at least one category with an amount.');return}
+  const dup=ok.find((c,i)=>ok.findIndex(x=>x.name.toLowerCase()===c.name.toLowerCase())!==i);if(dup){toast('You have “'+dup.name+'” twice.');return}
+  B.income=draftInc;B.cats=ok;bsave();if(!B.setupDone)btab('setup2');else{btab('overview');toast('Budget saved')}};
+
+function rSetup2(){
+  const first=!B.setupDone;$('bProg2').hidden=!first;$('bSetup2Step').textContent=first?'Step 2 of 2':'Fixed payments';
+  $('bBillsSave').textContent=first?'Finish setup':'Save bills';
+  const box=$('bBillEdit');
+  box.replaceChildren(...draftBills.map((b,i)=>{const n=el('input',{class:'bin',type:'text',maxlength:'30',placeholder:'e.g. Rent','aria-label':'Bill name'}),a=el('input',{class:'bin num',inputmode:'numeric',placeholder:'Amount','aria-label':'Bill amount'});
+    const d=el('select',{class:'bin','aria-label':'Due day'},el('option',{value:''},'Day'),...Array.from({length:31},(_,x)=>{const o=el('option',{value:String(x+1)},String(x+1));if(+b.day===x+1)o.selected=true;return o}));
+    n.value=b.name;a.value=b.amt?UGX(b.amt):'';n.oninput=()=>{b.name=n.value};a.oninput=()=>{b.amt=digits(a.value);a.value=b.amt?UGX(b.amt):''};d.onchange=()=>{b.day=+d.value||''};
+    return el('div',{class:'billrow'},n,a,d,el('button',{class:'xbtn',type:'button','aria-label':'Remove',onclick:()=>{draftBills.splice(i,1);if(!draftBills.length)draftBills.push({id:bid('b'),name:'',amt:0,day:'',paid:{}});rSetup2()}},'×'))}),
+    el('button',{class:'addline',type:'button',onclick:()=>{draftBills.push({id:bid('b'),name:'',amt:0,day:'',paid:{}});rSetup2()}},'+ Add bill'))}
+$('bBillsSave').onclick=()=>{const bad=draftBills.find(b=>b.name.trim()&&(!b.amt||!b.day));if(bad){toast('Give “'+bad.name.trim()+'” an amount and a due day.');return}
+  B.bills=draftBills.filter(b=>b.name.trim()).map(b=>({...b,name:b.name.trim().slice(0,30),paid:b.paid||{}}));const first=!B.setupDone;B.setupDone=true;bsave();btab('overview');
+  toast(first?'Budget ready. Tap + when you spend.':'Bills saved')};
+$('bBillsBack').onclick=()=>btab(B.setupDone?'bills':'setup');
+
+/* ---------- budget: overview ---------- */
+function spendRow(s){const c=bcat(s.cat);return el('button',{class:'li',type:'button',onclick:()=>openSpend(s.id)},el('span',{class:'tx'},el('b',{},s.note||(c?c.name:'Spend')),el('span',{},(c?c.name:'No category')+' · '+(s.date===today()?'Today':s.date===add(today(),-1)?'Yesterday':fmt(s.date,{day:'numeric',month:'short'})))),el('span',{class:'v'},'−'+UGX(s.amt)))}
+function rBOverview(){
+  const ym=curYM(),tb=budgetTotal(),ts=spentMonth(ym),left=tb-ts,p=tb?Math.min(1,ts/tb):0,C=2*Math.PI*40,dl=daysLeft();
+  $('bMonth').textContent=ymName(ym,true);
+  $('bHero').innerHTML=`<svg viewBox="0 0 96 96" role="img" aria-label="${Math.round(p*100)} percent of budget spent"><defs><linearGradient id="bhg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#9CB9FF"/><stop offset="1" stop-color="#2F5BD3"/></linearGradient></defs><circle cx="48" cy="48" r="40" fill="none" stroke="var(--track)" stroke-width="10"/><circle cx="48" cy="48" r="40" fill="none" stroke="${left<0?'var(--danger)':'url(#bhg)'}" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(p*C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 48 48)"/><text x="48" y="53" text-anchor="middle" font-size="16" font-weight="800">${Math.round(p*100)}%</text></svg>`;
+  $('bHero').append(el('div',{},el('p',{class:'eyebrow'},'Left this month'),el('div',{class:'big'+(left<0?' neg':'')},(left<0?'−':'')+UGX(Math.abs(left))),el('div',{class:'s'},UGX(ts)+' spent of '+UGX(tb)),el('div',{class:'s'},dl+(dl===1?' day':' days')+' to go'+(left>0?' · about '+UGX(left/dl)+' a day':''))));
+  const unc=monthSpends(ym).filter(s=>!bcat(s.cat)).reduce((t,s)=>t+s.amt,0);
+  const rows=B.cats.filter(c=>c.amt>0||spentCat(c.id,ym)>0).map(c=>{const sp=spentCat(c.id,ym),l=c.amt-sp,pp=c.amt?sp/c.amt:1;
+    return el('button',{class:'bcat',type:'button',onclick:()=>{btab('calendar')}},el('div',{class:'r1'},el('b',{},c.name),el('em',{class:l<0?'over':''},c.amt?(l<0?UGX(-l)+' over':UGX(l)+' left'):'No budget')),
+      el('div',{class:'bar'},el('i',{class:pp>=.85&&l>=0?'warnb':'',style:'width:'+Math.max(0,Math.min(100,(1-pp)*100))+'%'})),el('div',{class:'r2'},el('span',{},UGX(sp)+' spent'),el('span',{},c.amt?'Budget '+UGX(c.amt):'Set an amount in Setup')))});
+  if(unc)rows.push(el('div',{class:'bcat'},el('div',{class:'r1'},el('b',{},'No category'),el('em',{},UGX(unc)+' spent'))));
+  $('bCats').replaceChildren(...(rows.length?rows:[el('p',{class:'empty'},'No categories yet. Tap Edit to add them.')]));
+  const nb=billsByDate().filter(b=>!billPaid(b,ym)).slice(0,3);
+  $('bNext').replaceChildren(...(nb.length?nb.map(b=>{const[t,c]=billChip(b);return el('button',{class:'li',type:'button',onclick:()=>btab('bills')},el('span',{class:'tx'},el('b',{},b.name),el('span',{},'Due on the '+b.day+ord(b.day))),el('span',{class:'v'},UGX(b.amt),el('small',{},el('span',{class:'due '+c},t))))}):[el('p',{class:'empty'},B.bills.length?'All bills paid this month ✓':'No bills yet. Add them under Bills.')]));
+  const rc=[...B.spends].sort((a,b)=>b.date.localeCompare(a.date)||b.id.localeCompare(a.id)).slice(0,4);
+  $('bRecent').replaceChildren(...(rc.length?rc.map(spendRow):[el('p',{class:'empty'},'Tap + to log your first spend.')]));
 }
 
-/* ---------- budget: quick add / edit transaction ---------- */
-function openTx(editId){
-  const ex=editId?B.tx.find(t=>t.id===editId):null;
-  const flex=[...liveCats().filter(c=>c.kind==='flex'),...liveCats().filter(c=>c.kind==='bill')];
-  const st=ex?{...ex,amtS:String(ex.amt)}:{type:'out',amtS:'0',cat:(flex.find(c=>c.kind==='flex')||flex[0]||{}).id,acc:'cash',to:'mtn',date:today(),note:''};
-  const disp=el('span',{}),dsub=el('p',{class:'dsub'}),cats=el('div',{class:'chiprow'}),accs=el('div',{class:'chiprow'}),tos=el('div',{class:'chiprow'}),dates=el('div',{class:'chiprow'});
-  const catL=el('p',{class:'mini'},'Envelope'),accL=el('p',{class:'mini'},'From'),toL=el('p',{class:'mini'},'To');
-  const note=el('input',{class:'noteIn',type:'text',id:'tx-note',maxlength:'60',placeholder:'Note (optional), e.g. Rolex and tea','aria-label':'Note'});note.value=st.note||'';
-  const ty=el('div',{class:'ty'});
-  const dIn=el('input',{type:'date',id:'tx-date',style:'position:absolute;opacity:0;width:1px;height:1px',onchange:e=>{if(e.target.value){st.date=e.target.value;draw()}}});
+/* ---------- budget: calendar ---------- */
+function rCalendar(){
+  if(!calYM)calYM=curYM();const ym=calYM,dim=dimOf(ym),t=today(),isCur=ym===curYM();
+  $('bCalT').textContent=ymName(ym,true);$('bNextM').disabled=ym>=curYM();
+  const billsTotal=B.bills.reduce((s,b)=>s+b.amt,0),daily=(budgetTotal()-billsTotal)/dim;
+  $('bCalS').textContent=daily>0?'Daily limit about '+kf(daily):'';
+  const [yy,mm]=ym.split('-').map(Number);const first=(new Date(yy,mm-1,1).getDay()+6)%7;
+  const vals=[];let max=0,maxD=0,sum=0;for(let d=1;d<=dim;d++){const k=ym+'-'+pad(d),v=spentDay(k);vals.push(v);sum+=v;if(v>max){max=v;maxD=d}}
+  const cells=['M','T','W','T','F','S','S'].map(x=>el('span',{class:'wd'},x));for(let i=0;i<first;i++)cells.push(el('span',{class:'blank'}));
+  const ref=daily>0?daily:Math.max(1,max);
+  for(let d=1;d<=dim;d++){const k=ym+'-'+pad(d),v=vals[d-1],lv=!v?'':(daily>0&&v>daily)?'l4':v>ref*.6?'l3':v>ref*.3?'l2':'l1';const bill=B.bills.some(b=>Math.min(b.day,dim)===d);
+    cells.push(el('button',{type:'button',class:[lv,k>t?'future':'',k===t?'today':'',k===calSel&&k!==t?'sel':''].join(' ').trim(),'aria-label':fmt(k)+(v?', spent '+UGX(v):'')+(bill?', bill due':''),onclick:()=>{calSel=k;rCalendar()}},
+      el('span',{class:'d'},String(d)),v?el('span',{class:'a'},kf(v)):null,bill?el('span',{class:'bd'}):null))}
+  $('bCal').replaceChildren(...cells);
+  const daysSoFar=isCur?+t.slice(8):dim;
+  $('bStats').replaceChildren(el('div',{class:'glass'},el('b',{},kf(sum)),el('span',{},'Spent in '+ymName(ym))),el('div',{class:'glass'},el('b',{},kf(sum/Math.max(1,daysSoFar))),el('span',{},'Daily average')),el('div',{class:'glass'},el('b',{},max?kf(max):'–'),el('span',{},max?'Biggest · '+maxD+ord(maxD):'Biggest day')));
+  if(!calSel||calSel.slice(0,7)!==ym)calSel=isCur?t:ym+'-01';
+  const sel=calSel,sp=B.spends.filter(s=>s.date===sel),dnum=+sel.slice(8),bl=B.bills.filter(b=>Math.min(b.day,dim)===dnum);
+  $('bDayT').textContent=(sel===t?'Today':fmt(sel,{weekday:'long',day:'numeric',month:'short'}))+(spentDay(sel)?' · '+UGX(spentDay(sel)):'');
+  const rows=[...bl.map(b=>{const[tx,c]=isCur?billChip(b):[billPaid(b,ym)?'Paid':'Bill due',billPaid(b,ym)?'ok':''];return el('button',{class:'li',type:'button',onclick:()=>btab('bills')},el('span',{class:'tx'},el('b',{},'🧾 '+b.name),el('span',{},'Bill due')),el('span',{class:'v'},UGX(b.amt),el('small',{},el('span',{class:'due '+c},tx))))}),...sp.map(spendRow)];
+  $('bDay').replaceChildren(...(rows.length?rows:[el('p',{class:'empty'},sel>t?'Nothing on this day yet.':'No spending on this day.')]));
+}
+
+/* ---------- budget: bills ---------- */
+function rBills(){const ym=curYM(),tot=B.bills.reduce((s,b)=>s+b.amt,0);$('bBillSub').textContent=B.bills.length?UGX(tot)+' a month':'Monthly';
+  $('bBills').replaceChildren(...(B.bills.length?billsByDate().map(b=>{const[t,c]=billChip(b),paid=billPaid(b,ym);
+    return el('div',{class:'li'},el('span',{class:'tx'},el('b',{},b.name),el('span',{},UGX(b.amt)+' · due on the '+b.day+ord(b.day))),el('span',{class:'v'},el('span',{class:'due '+c},t),el('br'),
+      el('button',{class:'btn payb',type:'button',onclick:()=>togglePaid(b.id)},paid?'Undo':'Mark paid')))}):[el('p',{class:'empty'},'No bills yet. Add rent, internet or any fixed payment with its due day.')]))}
+function togglePaid(id){const b=B.bills.find(x=>x.id===id),ym=curYM();b.paid=b.paid||{};
+  if(billPaid(b,ym)){const sid=b.paid[ym];if(typeof sid==='string')B.spends=B.spends.filter(s=>s.id!==sid);delete b.paid[ym];bsave();renderB();toast(b.name+' set back to unpaid');return}
+  const c=catNameMatch(b.name);let sid=true;if(c){sid=bid('s');B.spends=[{id:sid,date:today(),amt:b.amt,cat:c.id,note:b.name+' (bill)'},...B.spends]}
+  b.paid[ym]=sid;bsave();renderB();toast(c?b.name+' paid · logged under '+c.name:b.name+' marked paid')}
+
+/* ---------- budget: log / edit a spend ---------- */
+function openSpend(editId){
+  if(!B.setupDone){btab('setup');return}
+  const ex=editId?B.spends.find(s=>s.id===editId):null;
+  const billNames=new Set(B.bills.map(b=>b.name.toLowerCase()));
+  const st=ex?{amt:String(ex.amt),cat:ex.cat,date:ex.date,note:ex.note||''}:{amt:'0',cat:(B.cats.find(c=>!billNames.has(c.name.toLowerCase()))||B.cats[0]||{}).id,date:today(),note:''};
+  let adding=false;
+  const disp=el('span',{}),cats=el('div',{class:'chiprow'}),newBox=el('div'),dates=el('div',{class:'chiprow'});
+  const note=el('input',{class:'noteIn',type:'text',id:'sp-note',maxlength:'60',placeholder:'What was it? (optional)','aria-label':'Note'});note.value=st.note;
+  const dIn=el('input',{type:'date',id:'sp-date',max:today(),style:'position:absolute;opacity:0;width:1px;height:1px',onchange:e=>{if(e.target.value){st.date=e.target.value;draw()}}});
   function draw(){
-    disp.textContent=UGX(+st.amtS);
-    ty.replaceChildren(...[['out','Spent'],['in','Received'],['mv','Transfer']].map(([v,l])=>el('button',{type:'button','aria-pressed':String(st.type===v),onclick:()=>{st.type=v;draw()}},l)));
-    catL.hidden=cats.hidden=st.type!=='out';toL.hidden=tos.hidden=st.type!=='mv';
-    accL.textContent=st.type==='in'?'Into':'From';
-    cats.replaceChildren(...flex.map(c=>el('button',{type:'button','aria-pressed':String(st.cat===c.id),onclick:()=>{st.cat=c.id;draw()}},c.e+' '+c.name)));
-    accs.replaceChildren(...B.accts.map(a=>el('button',{type:'button','aria-pressed':String(st.acc===a.id),onclick:()=>{st.acc=a.id;draw()}},a.name)));
-    tos.replaceChildren(...B.accts.filter(a=>a.id!==st.acc).map(a=>el('button',{type:'button','aria-pressed':String(st.to===a.id),onclick:()=>{st.to=a.id;draw()}},a.name)));
+    disp.textContent=UGX(+st.amt);
+    cats.replaceChildren(...B.cats.map(c=>el('button',{type:'button','aria-pressed':String(st.cat===c.id),onclick:()=>{st.cat=c.id;adding=false;draw()}},c.name)),
+      el('button',{type:'button','aria-pressed':String(adding),onclick:()=>{adding=!adding;draw();if(adding)setTimeout(()=>{const i=document.getElementById('nc-name');if(i)i.focus()},50)}},'+ New'));
+    newBox.replaceChildren();
+    if(adding){const nn=el('input',{class:'bin',type:'text',id:'nc-name',maxlength:'30',placeholder:'Category name','aria-label':'New category name'}),na=el('input',{class:'bin num',inputmode:'numeric',id:'nc-amt',placeholder:'Budget (optional)','aria-label':'Monthly budget for new category'});
+      na.oninput=()=>{const v=digits(na.value);na.value=v?UGX(v):''};
+      newBox.append(el('div',{class:'newcat'},nn,na,el('button',{class:'btn pri',type:'button',onclick:()=>{const nm=nn.value.trim().slice(0,30);if(!nm){toast('Type a name for the category.');nn.focus();return}
+        const exist=catNameMatch(nm);if(exist){st.cat=exist.id;adding=false;draw();toast('Using your existing “'+exist.name+'”');return}
+        const c={id:bid('c'),name:nm,amt:digits(na.value)};B.cats.push(c);bsave();st.cat=c.id;adding=false;draw();toast('“'+nm+'” added'+(c.amt?' with a '+UGX(c.amt)+' budget':''))}},'Add')),
+        el('p',{class:'note',style:'margin:6px 2px 0'},'It’s added to your categories. Set or change its budget any time in Setup.'))}
     const t=today(),y=add(t,-1),other=st.date!==t&&st.date!==y;
     dates.replaceChildren(el('button',{type:'button','aria-pressed':String(st.date===t),onclick:()=>{st.date=t;draw()}},'Today'),el('button',{type:'button','aria-pressed':String(st.date===y),onclick:()=>{st.date=y;draw()}},'Yesterday'),
-      el('button',{type:'button','aria-pressed':String(other),onclick:()=>{dIn.value=st.date;try{dIn.showPicker()}catch(e){dIn.focus();dIn.click()}}},other?fmt(st.date,{day:'numeric',month:'short'}):'Pick a date…'),dIn);
-    const c=catOf(st.cat);dsub.textContent=st.type==='out'?(c?c.name:'')+' · '+acctOf(st.acc).name:st.type==='in'?'Into '+acctOf(st.acc).name:acctOf(st.acc).name+' → '+acctOf(st.to).name;
-  }
-  const keys=el('div',{class:'keys'},...['1','2','3','4','5','6','7','8','9','000','0','⌫'].map(x=>el('button',{type:'button','aria-label':x==='⌫'?'Delete digit':x,onclick:()=>{let a=st.amtS;if(x==='⌫')a=a.length>1?a.slice(0,-1):'0';else a=(a==='0'?'':a)+x;a=a.replace(/^0+(?=\d)/,'');if(a.length>10)a=a.slice(0,10);st.amtS=a||'0';draw()}},x)));
-  const saveBtn=el('button',{class:'btn pri wide',type:'button',style:'margin-top:10px',onclick:()=>{
-    const amt=+st.amtS;if(!amt){toast('Type an amount first.');return}
-    if(st.type==='out'&&!catOf(st.cat)){toast('Pick an envelope.');return}
-    if(st.type==='mv'&&(!st.to||st.to===st.acc)){toast('Pick a different account to move money to.');return}
-    const rec={id:ex?ex.id:'t'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),type:st.type,amt,acc:st.acc,date:st.date,note:note.value.trim().slice(0,60)};
-    if(st.type==='out')rec.cat=st.cat;if(st.type==='mv')rec.to=st.to;if(ex&&ex.goal)rec.goal=ex.goal;
-    B.tx=ex?B.tx.map(t=>t.id===ex.id?rec:t):[rec,...B.tx];bsave();closeSheet();renderB();renderHomeIfOpen();
-    if(st.type==='out'){const c=catOf(st.cat),ym=rec.date.slice(0,7),left=availOf(c,ym)-spentOf(c,ym);toast(c.kind==='flex'?(left>=0?c.name+': '+UGX(left)+' left':c.name+' is '+UGX(-left)+' over'):'Saved',()=>{B.tx=ex?B.tx.map(t=>t.id===rec.id?ex:t):B.tx.filter(t=>t.id!==rec.id);bsave();renderB()})}
-    else toast(ex?'Saved':'Added')}},ex?'Save changes':'Save');
-  const kids=[ty,el('div',{class:'disp'},el('sup',{},'UGX'),disp),dsub,catL,cats,accL,accs,toL,tos,el('p',{class:'mini'},'Date'),dates,note,keys,saveBtn];
-  if(ex)kids.push(el('button',{class:'btn dan wide',type:'button',style:'margin-top:8px',onclick:e=>{const b=e.currentTarget;if(b.dataset.c){if(ex.goal){const g=B.goals.find(x=>x.id===ex.goal);if(g)g.saved=Math.max(0,g.saved-ex.amt)}B.tx=B.tx.filter(t=>t.id!==ex.id);bsave();closeSheet();renderB();toast('Deleted')}else{b.dataset.c='1';b.textContent='Tap again to delete';b.classList.add('solid')}}},'Delete'));
-  draw();openSheet(...kids);
-}
-
-/* ---------- budget: editors ---------- */
-function numField(label,id,val){const i=el('input',{type:'number',id,inputmode:'numeric',min:'0',step:'1000',value:String(val??'')});return[field(label,i,id),i]}
-function editIncome(){const ym=curYM();const[f,i]=numField('Money in for '+ymName(ym)+' (UGX)','f-inc',incomeOf(ym));
-  const all=el('label',{class:'inline',style:'margin-top:12px;font-size:13px;font-weight:600'},el('input',{type:'checkbox',id:'f-incall',checked:true}),'Use for future months too');
-  openSheet(el('h2',{},'Monthly income'),el('p',{class:'note',style:'margin:0'},'What you expect to receive this month. Your plan splits this across envelopes.'),f,all,
-    el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:()=>{const v=Math.max(0,+i.value||0);B.months[ym]={...mon(ym),income:v};if($('f-incall').checked)B.income=v;bsave();closeSheet();renderB();toast('Income saved')}},'Save'),el('button',{class:'btn',type:'button',onclick:closeSheet},'Cancel')))}
-function editEnv(id){const isNew=!id,ym=curYM();const c=isNew?{name:'',e:'🧾',amt:0,kind:'flex',day:null,acc:''}:catOf(id);
-  const name=el('input',{type:'text',id:'f-ename',maxlength:'30',value:c.name,placeholder:'e.g. Groceries'});
-  const emo=el('input',{type:'text',id:'f-eemo',maxlength:'4',value:c.e,style:'width:70px;text-align:center;font-size:20px'});
-  const[af,ai]=numField('Amount for '+ymName(ym)+' (UGX)','f-eamt',isNew?'':allocOf(c,ym));
-  const st={kind:c.kind};const seg=el('div',{class:'seg'});const billBox=el('div');
-  const day=el('input',{type:'number',id:'f-eday',min:'1',max:'31',value:c.day||'',placeholder:'e.g. 5',style:'width:100px'});
-  const acc=el('select',{id:'f-eacc'},el('option',{value:''},'Any account'),...B.accts.map(a=>{const o=el('option',{value:a.id},a.name);if(c.acc===a.id)o.selected=true;return o}));
-  const drawK=()=>{seg.replaceChildren(...[['flex','Everyday'],['bill','Bill'],['save','Savings']].map(([v,l])=>el('button',{type:'button','aria-pressed':String(st.kind===v),onclick:()=>{st.kind=v;drawK()}},l)));billBox.hidden=st.kind!=='bill'};
-  billBox.append(field('Due day of the month',day,'f-eday'),field('Usually paid from',acc,'f-eacc'));drawK();
-  const allM=el('label',{class:'inline',style:'margin-top:10px;font-size:13px;font-weight:600'},el('input',{type:'checkbox',id:'f-eall',checked:true}),'Use this amount for future months too');
-  const save=()=>{const nm=name.value.trim().slice(0,30);if(!nm){toast('Give the envelope a name.');return}const v=Math.max(0,+ai.value||0),dd=Math.min(31,Math.max(0,+day.value||0))||null;
-    const data={name:nm,e:emo.value.trim()||'🧾',kind:st.kind,day:st.kind==='bill'?dd:null,acc:st.kind==='bill'?acc.value:''};
-    if(isNew){const nid='c'+Date.now().toString(36);B.cats.push({id:nid,amt:v,...data});B.months[ym]={...mon(ym),alloc:{...(mon(ym).alloc||{}),[nid]:v}}}
-    else{Object.assign(c,data);B.months[ym]={...mon(ym),alloc:{...(mon(ym).alloc||{}),[c.id]:v}};if($('f-eall').checked)c.amt=v}
-    bsave();closeSheet();renderB();toast(isNew?'Envelope added':'Saved')};
-  const kids=[el('h2',{},isNew?'New envelope':'Edit envelope'),el('div',{class:'inline',style:'align-items:flex-end'},el('div',{style:'flex:1'},field('Name',name,'f-ename')),field('Icon',emo,'f-eemo')),af,isNew?null:allM,fieldDiv('Type',seg),billBox,
-    el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:save},isNew?'Add':'Save'),el('button',{class:'btn',type:'button',onclick:closeSheet},'Cancel'))];
-  if(!isNew)kids.push(el('div',{class:'actions'},el('button',{class:'btn dan',type:'button',onclick:e=>{const b=e.currentTarget;if(b.dataset.c){c.archived=true;bsave();closeSheet();renderB();toast(c.name+' removed. Past spending stays in your history.')}else{b.dataset.c='1';b.textContent='Tap again to remove';b.classList.add('solid')}}},'Remove envelope')));
-  openSheet(...kids)}
-function billSheet(id){const c=catOf(id),ym=curYM(),b=billInfo(c),al=allocOf(c,ym),sp=spentOf(c,ym);
-  openSheet(el('h2',{},c.e+' '+c.name),el('p',{class:'note',style:'margin:0'},UGX(al)+' a month'+(c.day?' · due on the '+c.day+ordinal(c.day):'')+(c.acc?' · from '+acctOf(c.acc).name:'')),
-    el('div',{class:'stats'},el('div',{},el('b',{},UGX(sp)),el('span',{},'Paid this month')),el('div',{},el('b',{},b.paid?'✓':UGX(Math.max(0,al-sp))),el('span',{},b.paid?'All paid':'Still to pay'))),
-    el('div',{class:'menu'},
-      b.paid?null:el('button',{class:'btn pri',type:'button',onclick:()=>{const amt=Math.max(0,al-sp);if(!amt)return;B.tx=[{id:'t'+Date.now().toString(36),type:'out',amt,cat:c.id,acc:c.acc||'mtn',date:today(),note:c.name},...B.tx];bsave();closeSheet();renderB();toast(c.name+' marked paid')}},'Mark paid · '+UGX(Math.max(0,al-sp))),
-      el('button',{class:'btn',type:'button',onclick:()=>editEnv(c.id)},'Edit amount or due date'),
-      el('button',{class:'btn',type:'button',onclick:closeSheet},'Close')))}
-function editAcct(id){const a=B.accts.find(x=>x.id===id),bal=balOf(a);
-  const name=el('input',{type:'text',id:'f-aname',maxlength:'24',value:a.name});const[bf,bi]=numField('Current balance (UGX)','f-abal',bal);
-  openSheet(el('h2',{},a.name),el('p',{class:'note',style:'margin:0'},'Set the balance to match your phone or wallet. Transactions update it after that.'),field('Name',name,'f-aname'),bf,
-    el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:()=>{a.name=name.value.trim().slice(0,24)||a.name;a.start=(+a.start||0)+((+bi.value||0)-bal);bsave();closeSheet();renderB();toast('Balance updated')}},'Save'),el('button',{class:'btn',type:'button',onclick:closeSheet},'Cancel')))}
-function editGoal(id){const isNew=!id;const g=isNew?{name:'',e:'🎯',target:0,saved:0,monthly:0}:B.goals.find(x=>x.id===id);
-  const name=el('input',{type:'text',id:'f-gname',maxlength:'30',value:g.name,placeholder:'e.g. Emergency fund'});const emo=el('input',{type:'text',id:'f-gemo',maxlength:'4',value:g.e,style:'width:70px;text-align:center;font-size:20px'});
-  const[tf,ti]=numField('Target (UGX)','f-gt',g.target||'');const[sf,si]=numField('Already saved (UGX)','f-gs',g.saved||'');const[mf,mi]=numField('Monthly amount (UGX)','f-gm',g.monthly||'');
-  const kids=[el('h2',{},isNew?'New goal':'Edit goal'),el('div',{class:'inline',style:'align-items:flex-end'},el('div',{style:'flex:1'},field('Name',name,'f-gname')),field('Icon',emo,'f-gemo')),tf,sf,mf,
-    el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:()=>{const nm=name.value.trim().slice(0,30);if(!nm){toast('Give the goal a name.');return}const t=Math.max(0,+ti.value||0);if(!t){toast('Set a target amount.');return}
-      const data={name:nm,e:emo.value.trim()||'🎯',target:t,saved:Math.max(0,+si.value||0),monthly:Math.max(0,+mi.value||0)};
-      if(isNew)B.goals.push({id:'g'+Date.now().toString(36),...data});else Object.assign(g,data);bsave();closeSheet();renderB();toast(isNew?'Goal added':'Saved')}},isNew?'Add goal':'Save'),el('button',{class:'btn',type:'button',onclick:closeSheet},'Cancel'))];
-  if(!isNew)kids.push(el('div',{class:'actions'},el('button',{class:'btn dan',type:'button',onclick:e=>{const b=e.currentTarget;if(b.dataset.c){B.goals=B.goals.filter(x=>x.id!==id);bsave();closeSheet();renderB();toast('Goal deleted')}else{b.dataset.c='1';b.textContent='Tap again to delete';b.classList.add('solid')}}},'Delete goal')));
-  openSheet(...kids)}
-function goalSheet(id){const g=B.goals.find(x=>x.id===id);const sv=liveCats().find(c=>c.kind==='save');
-  const[af,ai]=numField('Add money (UGX)','f-gadd','');const acc=el('select',{id:'f-gacc'},...B.accts.map(a=>el('option',{value:a.id},a.name)));
-  openSheet(el('h2',{},(g.e||'🎯')+' '+g.name),el('p',{class:'note',style:'margin:0'},UGX(g.saved)+' of '+UGX(g.target)+' · '+goalETA(g)),af,field('From',acc,'f-gacc'),
-    el('p',{class:'note',style:'margin:8px 2px 0'},sv?'Counts toward your '+sv.name+' envelope this month.':'Tip: add a Savings envelope in Plan to track this against your budget.'),
-    el('div',{class:'actions'},el('button',{class:'btn pri',type:'button',onclick:()=>{const v=Math.max(0,+ai.value||0);if(!v){toast('Type an amount.');return}g.saved+=v;
-      if(sv)B.tx=[{id:'t'+Date.now().toString(36),type:'out',amt:v,cat:sv.id,acc:acc.value,date:today(),note:'To '+g.name,goal:g.id},...B.tx];bsave();closeSheet();renderB();toast(g.saved>=g.target?g.name+' reached! 🎉':UGX(g.target-g.saved)+' to go')}},'Add money'),
-      el('button',{class:'btn',type:'button',onclick:()=>editGoal(id)},'Edit')))}
+      el('button',{type:'button','aria-pressed':String(other),onclick:()=>{dIn.value=st.date;try{dIn.showPicker()}catch(e){dIn.focus();dIn.click()}}},other?fmt(st.date,{day:'numeric',month:'short'}):'Pick a date…'),dIn)}
+  const keys=el('div',{class:'keys'},...['1','2','3','4','5','6','7','8','9','000','0','⌫'].map(x=>el('button',{type:'button','aria-label':x==='⌫'?'Delete digit':x,onclick:()=>{let a=st.amt;if(x==='⌫')a=a.length>1?a.slice(0,-1):'0';else a=(a==='0'?'':a)+x;a=a.replace(/^0+(?=\d)/,'').slice(0,10);st.amt=a||'0';draw()}},x)));
+  const save=el('button',{class:'btn pri wide',type:'button',style:'margin-top:10px',onclick:()=>{const amt=+st.amt;if(!amt){toast('Type an amount first.');return}if(!bcat(st.cat)){toast('Pick a category, or tap + New.');return}
+    const rec={id:ex?ex.id:bid('s'),date:st.date,amt,cat:st.cat,note:note.value.trim().slice(0,60)};
+    B.spends=ex?B.spends.map(s=>s.id===ex.id?rec:s):[rec,...B.spends];bsave();closeSheet();renderB();renderHomeIfOpen();
+    const c=bcat(rec.cat),ym=rec.date.slice(0,7),l=c.amt-spentCat(c.id,ym);
+    toast(c.amt?(l>=0?c.name+': '+UGX(l)+' left':c.name+' is '+UGX(-l)+' over'):(ex?'Saved':'Logged under '+c.name),()=>{B.spends=ex?B.spends.map(s=>s.id===rec.id?ex:s):B.spends.filter(s=>s.id!==rec.id);bsave();renderB();renderHomeIfOpen()})}},ex?'Save changes':'Save');
+  const kids=[el('h2',{},ex?'Edit spend':'Log a spend'),el('div',{class:'disp'},el('sup',{},'UGX'),disp),el('p',{class:'mini'},'Category'),cats,newBox,el('p',{class:'mini'},'Date'),dates,note,keys,save];
+  if(ex)kids.push(el('button',{class:'btn dan wide',type:'button',style:'margin-top:8px',onclick:e=>{const b=e.currentTarget;if(b.dataset.c){B.spends=B.spends.filter(s=>s.id!==ex.id);B.bills.forEach(bl=>{for(const k in bl.paid||{})if(bl.paid[k]===ex.id)delete bl.paid[k]});bsave();closeSheet();renderB();renderHomeIfOpen();toast('Deleted')}else{b.dataset.c='1';b.textContent='Tap again to delete';b.classList.add('solid')}}},'Delete'));
+  draw();openSheet(...kids)}
 
 /* ---------- home ---------- */
 function renderHomeIfOpen(){if(S.app==='home')renderHome()}
@@ -1233,21 +1285,22 @@ function renderHome(){
   $('homeDate').textContent=fmt(t);$('homeHi').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+(S.settings.name?', '+S.settings.name:'');
   const a=list().filter(x=>counts(x,t)),dn=a.filter(x=>isDone(t,x)).length,ps=perfectStreak();
   $('hC1').textContent=a.length?dn+' of '+a.length:'–';$('hC2').textContent=a.length?(ps>1?'done · '+ps+'-day streak':'habits done'):'none today';
-  const sf=safeToSpend(),dl=daysLeft();$('hB1').textContent=kf(sf);$('hB2').textContent='safe · '+dl+(dl===1?' day':' days')+' left';
+  const dl=daysLeft();if(B.setupDone){const lf=leftThisMonth();$('hB1').textContent=kf(lf);$('hB2').textContent='left · '+dl+(dl===1?' day':' days')+' to go'}else{$('hB1').textContent='Set up';$('hB2').textContent='your budget and bills'}
   const rows=[];const r=atRisk();
   if(r.length)rows.push(['🔥',r.length===1?'1 streak at risk tonight':r.length+' streaks at risk tonight',r.map(x=>x.name.split(' ')[0]).join(', '),'var(--warn)',()=>tab('today')]);
-  else if(a.length)rows.push(['✅',dn===a.length?'All habits done today':(a.length-dn)+' habits left today',ps>1?ps+'-day streak':'','var(--accent)',()=>tab('today')]);
-  const nb=billsSorted().find(b=>!b.paid&&b.date);if(nb){const[txt,cls]=dueChip(nb);rows.push(['📅',nb.c.name+' · '+kf(allocOf(nb.c,curYM())),txt,cls==='late'?'var(--danger)':cls==='soon'?'var(--warn)':'var(--fg)',()=>btab('overview')])}
-  const g=B.goals[0];if(g)rows.push([g.e||'🎯',g.name,Math.round(Math.min(1,g.saved/g.target)*100)+'%','var(--fg)',()=>btab('goals')]);
+  else if(a.length)rows.push(['✅',dn===a.length?'All habits done today':(a.length-dn)+(a.length-dn===1?' habit':' habits')+' left today',ps>1?ps+'-day streak':'','var(--accent)',()=>tab('today')]);
+  const nb=billsByDate().find(b=>!billPaid(b,curYM()));if(nb){const[txt,cls]=billChip(nb);rows.push(['🧾',nb.name+' · '+kf(nb.amt),txt,cls==='late'?'var(--danger)':cls==='soon'?'var(--warn)':'var(--fg)',()=>btab('bills')])}
+  if(B.setupDone){const sd=spentDay(t);rows.push(['📅','Spent today',sd?UGX(sd):'Nothing yet','var(--fg)',()=>btab('calendar')])}
   const wd=dow(t);if(S.settings.review!==false&&(wd===5||wd===6))rows.push(['🗓','Weekly review',wd===6?'Ready':'Tomorrow','var(--accent)',()=>{tab('today');if(wd===6){const ws=reviewWeek();if(ws)openReview(ws)}}]);
-  if(!B.tx.length)rows.push(['💸','Log your first spend in Budget','Start','var(--accent)',()=>{btab('overview');openTx()}]);
+  if(!B.setupDone)rows.push(['💸','Set up your budget','Start','var(--accent)',()=>btab('setup')]);
+  else if(!B.spends.length)rows.push(['💸','Log your first spend','Start','var(--accent)',()=>{btab('overview');openSpend()}]);
   $('glance').replaceChildren(...rows.map(([i,b,s,c,fn])=>el('button',{class:'gl',type:'button',onclick:fn},el('i',{},i),el('b',{},b),el('span',{style:'color:'+c},s))));
 }
 
 /* ---------- swipe back ---------- */
 function goBack(){
   if(!$('sheet').hidden){closeSheet();return true}
-  if(S.app==='b'){if(B.tab!=='overview')btab('overview');else goHome();return true}
+  if(S.app==='b'){if(B.tab==='setup2')btab('setup');else if(B.tab!=='overview'&&B.setupDone)btab('overview');else goHome();return true}
   if(S.app==='c'){if(S.tab!=='today')tab('today');else if(S.sel!==today()){S.sel=today();render()}else goHome();return true}
   return false}
 (function(){

@@ -1,6 +1,6 @@
 // Optional Face ID lock for the whole app (with a 4-digit passcode as backup).
 // Uses the phone's built-in passkey prompt; nothing leaves the device.
-import { h, icon } from './util.js';
+import { h, fill, icon } from './util.js';
 import { doc, save } from './store.js';
 import { openSheet, closeSheet, toast, btn } from './ui.js';
 
@@ -30,7 +30,7 @@ function draw(mode = 'face') {
     if (fails >= 5) { waitUntil = Date.now() + 30000; fails = 0; msg('Too many tries. Wait 30 seconds.'); } else msg('Wrong passcode. Try again.');
   };
   pinBuf = ''; drawDots();
-  box.replaceChildren(
+  fill(box,
     h('div', { class: 'tile-ic', style: '--c:var(--fg);width:72px;height:72px;border-radius:22px' }, icon('lock', 34)),
     h('h2', {}, 'Locked'),
     h('p', { id: 'lockMsg' }, mode === 'pin' ? 'Enter your passcode.' : 'Unlock with Face ID to open your apps.'),

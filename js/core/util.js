@@ -44,6 +44,8 @@ export function h(tag, attrs, ...kids) {
   append(e, kids);
   return e;
 }
+// Replace an element's children, with the same rules as h() (arrays are flattened, null/false skipped).
+export function fill(e, ...kids) { e.replaceChildren(); append(e, kids); return e; }
 function append(e, kids) { for (const c of kids) { if (c == null || c === false) continue; if (Array.isArray(c)) append(e, c); else e.append(c); } }
 
 // Icons: 24x24 stroke paths, drawn in the current text colour.

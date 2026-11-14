@@ -1,5 +1,5 @@
 // Shared interface pieces: page header, bottom sheet, toast, form controls and small charts.
-import { h, icon, clamp } from './util.js';
+import { h, fill, icon, clamp } from './util.js';
 
 const $ = id => document.getElementById(id);
 
@@ -39,7 +39,7 @@ export function initSheet() {
 let toastTimer;
 export function toast(msg, undo) {
   const t = $('toast');
-  t.replaceChildren(h('span', {}, msg), undo ? h('button', { type: 'button', onclick: () => { t.hidden = true; undo(); } }, 'Undo') : null);
+  fill(t, h('span', {}, msg), undo ? h('button', { type: 'button', onclick: () => { t.hidden = true; undo(); } }, 'Undo') : null);
   t.hidden = false;
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, undo ? 5000 : 2800);
 }
@@ -96,7 +96,7 @@ export const row = (title, note, control, onclick) => h(onclick ? 'button' : 'di
 export function ring(pct, color, size = 64, stroke = 7, center) {
   const r = (size - stroke) / 2, C = 2 * Math.PI * r, p = clamp(pct || 0, 0, 1);
   const box = h('span', { class: 'ring', style: `width:${size}px;height:${size}px` });
-  box.innerHTML = `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="var(--track)" stroke-width="${stroke}"/><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(p * C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 ${size / 2} ${size / 2})"/></svg>`;
+  box.innerHTML = `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="var(--track)" stroke-width="${stroke}"/>${p > 0 ? `<circle cx="${size / 2}" cy="${size / 2}" r="${r}" fill="none" stroke="${color}" stroke-width="${stroke}" stroke-linecap="round" stroke-dasharray="${(p * C).toFixed(1)} ${C.toFixed(1)}" transform="rotate(-90 ${size / 2} ${size / 2})"/>` : ''}</svg>`;
   if (center != null) box.append(h('span', { class: 'ring-c' }, center));
   return box;
 }

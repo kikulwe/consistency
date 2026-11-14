@@ -11,7 +11,8 @@ export function renderHome(MODULES) {
   const hello = (hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening') + (s.name ? ', ' + s.name : '');
 
   // Today strip: today's workout, outfit of the day, open tasks, habits left
-  const strip = MODULES.map(m => [m, m.today && safe(() => m.today())]).filter(([, t]) => t).map(([m, t]) => {
+  const order = ['gym', 'style', 'tasks', 'consistency'];
+  const strip = [...MODULES].sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)).map(m => [m, m.today && safe(() => m.today())]).filter(([, t]) => t).map(([m, t]) => {
     const thumbs = t.thumbs && t.thumbs.length ? h('span', { class: 'thumbs' }, t.thumbs.slice(0, 4).map(id => { const img = h('img', { alt: '' }); photos.url(id).then(u => { if (u) img.src = u; }); return img; })) : null;
     return h('button', { type: 'button', style: '--c:' + m.color, onclick: () => go(m.id, t.tab || '') },
       h('span', { class: 't-l' }, h('i'), t.label),

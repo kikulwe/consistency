@@ -39,7 +39,7 @@ function card(t, readonly) {
   const c = h('article', { class: 'tcard' + (t.status === 'done' ? ' is-done' : ''), 'data-id': t.id, tabindex: '0', role: 'button' },
     h('div', { class: 'tcard-top' },
       t.tag ? h('span', { class: 'tag', style: `color:${tagColor(t.tag)};background:color-mix(in srgb, ${tagColor(t.tag)} 16%, transparent)` }, t.tag) : null,
-      h('span', { class: 'pri', style: 'color:' + PRI[t.pri || 'med'][1] }, h('i'), PRI[t.pri || 'med'][0])),
+      h('span', { class: 'tpri', style: 'color:' + PRI[t.pri || 'med'][1] }, h('i'), PRI[t.pri || 'med'][0])),
     h('h3', {}, t.title),
     t.notes ? h('p', { class: 'tnotes' }, t.notes) : null,
     (t.due || t.carried) ? h('div', { class: 'tcard-meta' },

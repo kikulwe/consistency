@@ -91,6 +91,9 @@ export function toggle(checked, onchange, label) {
 export const row = (title, note, control, onclick) => h(onclick ? 'button' : 'div', { class: 'row', type: onclick ? 'button' : null, onclick },
   h('span', { class: 'row-t' }, h('b', {}, title), note ? h('small', {}, note) : null), control || (onclick ? icon('chevron', 18) : null));
 
+// A round tick box with a full-size (44px) tap target.
+export const checkBtn = (on, label, onclick) => h('button', { type: 'button', class: 'checkbtn', 'aria-label': label, 'aria-pressed': String(!!on), onclick }, h('span', { class: 'checkbox' + (on ? ' on' : '') }, on ? icon('tick', 16) : null));
+
 /* ---------- charts ---------- */
 // Progress ring. pct 0..1+, colour is a CSS colour. Children go in the middle.
 export function ring(pct, color, size = 64, stroke = 7, center) {

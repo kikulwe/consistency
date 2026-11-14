@@ -33,7 +33,7 @@ function render(keepScroll) {
     nodes = [h('div', { class: 'card empty' }, h('p', {}, 'This screen hit a problem: ' + (e && e.message || e)), h('button', { class: 'btn', type: 'button', onclick: goHome }, 'Back to home'))];
   }
   app.dataset.mod = mod ? mod.id : r.mod;
-  app.style.setProperty('--acc', mod ? mod.color : '#F3F5FA');
+  document.documentElement.style.setProperty('--acc', mod ? mod.color : '#F3F5FA');   // on the root so sheets and toasts pick it up too
   view.className = mod ? 'v-' + mod.id + ' t-' + tab : 'v-' + (r.mod === 'settings' ? 'settings' : 'home');
   view.replaceChildren(...[nodes].flat(Infinity).filter(Boolean));
 

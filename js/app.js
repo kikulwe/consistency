@@ -35,7 +35,7 @@ function render(keepScroll) {
   app.dataset.mod = mod ? mod.id : r.mod;
   app.style.setProperty('--acc', mod ? mod.color : '#F3F5FA');
   view.className = mod ? 'v-' + mod.id + ' t-' + tab : 'v-' + (r.mod === 'settings' ? 'settings' : 'home');
-  view.replaceChildren(...[].concat(nodes).filter(Boolean));
+  view.replaceChildren(...[nodes].flat(Infinity).filter(Boolean));
 
   // dock
   app.classList.toggle('has-dock', !!mod || r.mod === 'settings');

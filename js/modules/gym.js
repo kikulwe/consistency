@@ -321,7 +321,7 @@ export default {
   init() { G(); },
   render: tab => ({ today: todayView, program, exercises, progress })[tab](),
   tile() {
-    const g = G(); if (!g.setup) return { badge: 'Set up', sub: '12-week beginner program' };
+    const g = G(); if (!g.setup) return { badge: 'Set up', sub: '12-week program' };
     const last = lastSession() || (g.past || [])[(g.past || []).length - 1], p = plan(doneCount()), d = last ? daysBetween(last.date, today()) : null;
     return { badge: g.active ? 'In progress' : 'Workout ' + p.workout + ' next', sub: d == null ? 'No sessions yet' : d === 0 ? 'Trained today' : plural(d, 'day') + ' since last session' };
   },

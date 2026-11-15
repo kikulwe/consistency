@@ -309,3 +309,53 @@ a.btn { text-decoration: none; color: var(--fg); }
   background: linear-gradient(to right, transparent 33.2%, rgba(255,255,255,.28) 33.2%, rgba(255,255,255,.28) 33.5%, transparent 33.5%, transparent 66.5%, rgba(255,255,255,.28) 66.5%, rgba(255,255,255,.28) 66.8%, transparent 66.8%),
               linear-gradient(to bottom, transparent 33.2%, rgba(255,255,255,.28) 33.2%, rgba(255,255,255,.28) 33.5%, transparent 33.5%, transparent 66.5%, rgba(255,255,255,.28) 66.5%, rgba(255,255,255,.28) 66.8%, transparent 66.8%); }
 .range { width: 100%; height: 44px; accent-color: var(--acc); margin: 0; }
+
+/* ---------- consistency ---------- */
+.daynav { padding: 8px; }
+.habit { display: flex; align-items: center; border-top: 1px solid var(--line); }
+.habit:first-child { border-top: 0; }
+.habit.flash { animation: flash 1.3s ease; }
+@keyframes flash { 30% { background: color-mix(in srgb, var(--warn) 22%, transparent); } }
+.htick { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 12px 6px 12px var(--pad); min-height: 60px; }
+.hbox { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--hc); display: grid; place-items: center; position: relative; overflow: hidden; font-size: 11px; font-weight: 700; transition: transform .15s; }
+.htick:active .hbox { transform: scale(.88); }
+.hfill { position: absolute; left: 0; right: 0; bottom: 0; background: var(--hc); opacity: .5; }
+.hcnt { position: relative; }
+.hcheck { display: none; position: relative; line-height: 0; }
+.htick.done .hbox { border-color: transparent; background: var(--hc); }
+.htick.done .hcheck { display: block; }
+.htick.done .hcnt, .htick.done .hfill { display: none; }
+.htick.done .row-t b { color: var(--muted); }
+.htick.skipped { opacity: .6; } .htick.skipped .hbox { border-style: dashed; border-color: var(--faint); }
+.hstreak { flex: none; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.hstreak.hot { color: var(--acc); }
+.hmore { flex: none; width: 46px; height: 46px; margin-right: 4px; border-radius: 50%; color: var(--muted); font-size: 20px; line-height: 1; text-align: center; }
+.addform { display: flex; gap: 8px; }
+.addform .in { flex: 1; }
+.swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.swatches button { width: 44px; height: 44px; border-radius: 50%; border: 3px solid transparent; background: var(--c); }
+.swatches button[aria-pressed="true"] { border-color: var(--fg); }
+.calgrid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; }
+.calgrid .wdh { font-size: 10px; font-weight: 700; color: var(--muted); }
+.calgrid .d { aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 600; background: var(--field); color: var(--muted); }
+.calgrid .d.ok { background: var(--hc); color: #fff; }
+.calgrid .d.miss { background: color-mix(in srgb, var(--bad) 28%, transparent); color: var(--fg); }
+.calgrid .d.sk { background: transparent; border: 1px dashed var(--faint); }
+.calgrid .d.off { background: transparent; }
+.calgrid .d.today { outline: 2px solid var(--fg); outline-offset: -2px; }
+.heatwrap { display: flex; gap: 6px; }
+.daylbl { display: grid; grid-template-rows: repeat(7, 1fr); gap: 3px; font-size: 9.5px; font-weight: 600; color: var(--muted); }
+.daylbl span { display: flex; align-items: center; }
+.heat { flex: 1; min-width: 0; display: grid; grid-template-rows: repeat(7, auto); grid-auto-flow: column; grid-auto-columns: 1fr; gap: 3px; }
+.cell { aspect-ratio: 1; border-radius: 4px; background: var(--track); min-width: 0; }
+[data-l="0"] { background: color-mix(in srgb, var(--bad) 32%, var(--surface)); }
+[data-l="1"] { background: color-mix(in srgb, var(--acc) 28%, var(--surface)); }
+[data-l="2"] { background: color-mix(in srgb, var(--acc) 52%, var(--surface)); }
+[data-l="3"] { background: color-mix(in srgb, var(--acc) 76%, var(--surface)); }
+[data-l="4"] { background: var(--acc); }
+.cell[data-l="x"] { background: transparent; }
+.cell.sel { outline: 2px solid var(--fg); outline-offset: 1px; }
+.legend { display: flex; align-items: center; gap: 4px; font-size: 11.5px; color: var(--muted); }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.hrow .row-t b { display: inline-flex; align-items: center; }
+.hrow .track { display: block; } .hrow .track i { display: block; }

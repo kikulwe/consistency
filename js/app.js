@@ -3,7 +3,7 @@
 import { h, icon, today } from './core/util.js';
 import { initStore, doc, persistent } from './core/store.js';
 import { setRenderer, route, go, tabTo, goHome } from './core/nav.js';
-import { initSheet, closeSheet, sheetOpen, toast } from './core/ui.js';
+import { initSheet, closeSheet, sheetOpen, toast, hideToast } from './core/ui.js';
 import { initLock } from './core/lock.js';
 import { migrateLegacy } from './core/legacy.js';
 import { renderHome } from './home.js';
@@ -69,7 +69,7 @@ async function boot() {
   for (const m of MODULES) { try { m.init && m.init(); } catch (e) { console.error(m.id, e); } }
   initSheet();
   setRenderer(render);
-  window.addEventListener('hashchange', () => { closeSheet(); render(false); });
+  window.addEventListener('hashchange', () => { closeSheet(); if (prev && prev.mod !== route().mod) hideToast(); render(false); });
   window.addEventListener('store-error', () => toast('Couldn’t save. Your phone storage may be full.'));
   initLock(() => render(true));
   render(false);

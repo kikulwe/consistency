@@ -44,6 +44,8 @@ export function toast(msg, undo) {
   clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.hidden = true; }, undo ? 5000 : 2800);
 }
 
+export const hideToast = () => { clearTimeout(toastTimer); $('toast').hidden = true; };
+
 /* ---------- buttons and form controls ---------- */
 export const btn = (label, onclick, cls = '') => h('button', { class: 'btn ' + cls, type: 'button', onclick }, label);
 // A button that asks for a second tap before doing something destructive.
